@@ -3,7 +3,7 @@ module.exports = {
     collectCoverageFrom: ['<rootDir>/src/**/*.ts'],
     coverageDirectory: 'coverage',
     testEnvironment: 'node',
-    testMatch: ['**/*.spec.ts', '**/*.test.ts'],
+    testMatch: ['**/*.spec.ts', '**/*.tests.ts'],
     testPathIgnorePatterns: ['/node_modules/', '/dist/'],
     coveragePathIgnorePatterns: [
         '/presentation/controllers/protocols/',
