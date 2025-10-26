@@ -1,7 +1,7 @@
 import {SignUpController} from "../../presentation/controllers/signup/signup";
 import {EmailValidator} from '../../presentation/protocols/email-validator';
 import {InvalidParamError, MissingParamError, ServerError} from "../../presentation/errors";
-import {AddAccount, AddAccountModel} from "../../domain/usecases/add-account";
+import {AddAccount} from "../../domain/usecases/add-account";
 import {EmailValidatorStub} from "../helpers/email-validator-stub";
 import {AddAccountStub} from "../helpers/add-account-stub";
 
