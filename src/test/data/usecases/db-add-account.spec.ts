@@ -1,5 +1,5 @@
 import {EncrypterStub} from "../../helpers/encrypter-stub";
-import {DbAddAccount} from "../../../data/usecases/db-add-account";
+import {DbAddAccount} from "../../../data/usecases/add-account/db-add-account";
 import {Encrypter} from "../../../data/protocols/encrypter";
 
 interface sutTypes {
