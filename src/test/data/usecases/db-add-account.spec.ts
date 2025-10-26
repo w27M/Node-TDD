@@ -1,0 +1,48 @@
+import {EncrypterStub} from "../../helpers/encrypter-stub";
+import {DbAddAccount} from "../../../data/usecases/db-add-account";
+import {Encrypter} from "../../../data/protocols/encrypter";
+
+interface sutTypes {
+    sut: DbAddAccount;
+    encrypterStub: Encrypter
+}
+const makeEncrypter = (): Encrypter => {
+    return new EncrypterStub();
+}
+
+const makeSut = (): sutTypes => {
+    const encrypterStub = makeEncrypter();
+    const sut = new DbAddAccount(encrypterStub);
+    return {
+        sut,
+        encrypterStub
+    }
+}
+describe('Db-AddAccount use case', () => {
+    it('should call Encrypter with correct password', async () => {
+        const {encrypterStub, sut} = makeSut();
+        const encryptSpy = jest.spyOn(encrypterStub, 'encrypt');
+        const accountData = {
+            name: "valid_name",
+            email: "valid_email@mail.com",
+            password: "valid_password",
+        }
+        await sut.add(accountData);
+        expect(encryptSpy).toHaveBeenCalledWith('valid_password');
+    });
+    it('should throw if Encrypter throws', async () => {
+        const {sut, encrypterStub} = makeSut();
+        jest.spyOn(encrypterStub, 'encrypt').mockReturnValueOnce(
+            new Promise((_resolve, reject) =>
+                    reject(new Error())
+            )
+        );
+        const accountData = {
+            name: "valid_name",
+            email: "valid_email@mail.com",
+            password: "valid_password",
+        }
+        const promise = sut.add(accountData);
+        await expect(promise).rejects.toThrow();
+    });
+});
