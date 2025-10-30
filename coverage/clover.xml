@@ -4,7 +4,7 @@
     <metrics statements="55" coveredstatements="55" conditionals="6" coveredconditionals="6" methods="20" coveredmethods="20" elements="81" coveredelements="81" complexity="0" loc="55" ncloc="55" packages="7" files="13" classes="13"/>
     <package name="data.usecases.add-account">
       <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-      <file name="db-add-account.ts" path="/Users/marcossilva/Documents/Udemy/Node/CLEAN-NODE-API/src/data/usecases/add-account/db-add-account.ts">
+      <file name="db-add-accounts.ts" path="/Users/marcossilva/Documents/Udemy/Node/CLEAN-NODE-API/src/data/usecases/add-account/db-add-accounts.ts">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="4" count="1" type="stmt"/>
         <line num="5" count="5" type="stmt"/>
