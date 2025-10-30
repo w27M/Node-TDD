@@ -1,5 +1,4 @@
 import {Collection, MongoClient} from "mongodb";
-import {AccountsInterface} from "../accounts.interface";
 
 export const MongoHelper = {
     client: null as MongoClient,
@@ -16,8 +15,8 @@ export const MongoHelper = {
         return this.client.db().collection(name)
     },
 
-    map(document: any): AccountsInterface {
-        const { _id, ...rest } = document;
-        return {...rest, id: _id.toString()};
+    map: (collection: any): any => {
+        const { _id, ...collectionWithoutId } = collection;
+        return {...collectionWithoutId, id: _id.toString()};
     }
 }
