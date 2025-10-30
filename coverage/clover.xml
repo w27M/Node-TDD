@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1760929280634" clover="3.2.0">
-  <project timestamp="1760929280634" name="All files">
-    <metrics statements="48" coveredstatements="48" conditionals="6" coveredconditionals="6" methods="17" coveredmethods="17" elements="71" coveredelements="71" complexity="0" loc="48" ncloc="48" packages="6" files="11" classes="11"/>
-    <package name="data.usecases">
-      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
-      <file name="db-add-account.ts" path="/Users/marcossilva/Documents/Udemy/Node/CLEAN-NODE-API/src/data/usecases/db-add-account.ts">
-        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="6" count="2" type="stmt"/>
-        <line num="9" count="2" type="stmt"/>
-        <line num="10" count="1" type="stmt"/>
+<coverage generated="1761754169545" clover="3.2.0">
+  <project timestamp="1761754169545" name="All files">
+    <metrics statements="55" coveredstatements="55" conditionals="6" coveredconditionals="6" methods="20" coveredmethods="20" elements="81" coveredelements="81" complexity="0" loc="55" ncloc="55" packages="7" files="13" classes="13"/>
+    <package name="data.usecases.add-account">
+      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <file name="db-add-accounts.ts" path="/Users/marcossilva/Documents/Udemy/Node/CLEAN-NODE-API/src/data/usecases/add-account/db-add-accounts.ts">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="8" count="5" type="stmt"/>
+        <line num="9" count="4" type="stmt"/>
+      </file>
+    </package>
+    <package name="infra.criptography">
+      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <file name="bcrypt-adapter.ts" path="/Users/marcossilva/Documents/Udemy/Node/CLEAN-NODE-API/src/infra/criptography/bcrypt-adapter.ts">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="7" count="3" type="stmt"/>
       </file>
     </package>
     <package name="presentation.controllers.signup">
@@ -73,23 +83,29 @@
         <line num="15" count="3" type="stmt"/>
       </file>
     </package>
-    <package name="test.helpers">
-      <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="5"/>
-      <file name="add-account-stub.ts" path="/Users/marcossilva/Documents/Udemy/Node/CLEAN-NODE-API/src/test/helpers/add-account-stub.ts">
+    <package name="tests.helpers">
+      <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="7"/>
+      <file name="add-account-repository-stub.ts" path="/Users/marcossilva/Documents/Udemy/Node/CLEAN-NODE-API/src/tests/helpers/add-account-repository-stub.ts">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="12" count="3" type="stmt"/>
+      </file>
+      <file name="add-account-stub.ts" path="/Users/marcossilva/Documents/Udemy/Node/CLEAN-NODE-API/src/tests/helpers/add-account-stub.ts">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="4" count="1" type="stmt"/>
         <line num="6" count="3" type="stmt"/>
         <line num="13" count="3" type="stmt"/>
       </file>
-      <file name="email-validator-stub.ts" path="/Users/marcossilva/Documents/Udemy/Node/CLEAN-NODE-API/src/test/helpers/email-validator-stub.ts">
+      <file name="email-validator-stub.ts" path="/Users/marcossilva/Documents/Udemy/Node/CLEAN-NODE-API/src/tests/helpers/email-validator-stub.ts">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="3" count="1" type="stmt"/>
         <line num="5" count="4" type="stmt"/>
       </file>
-      <file name="encrypter-stub.ts" path="/Users/marcossilva/Documents/Udemy/Node/CLEAN-NODE-API/src/test/helpers/encrypter-stub.ts">
+      <file name="encrypter-stub.ts" path="/Users/marcossilva/Documents/Udemy/Node/CLEAN-NODE-API/src/tests/helpers/encrypter-stub.ts">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
-        <line num="3" count="1" type="stmt"/>
+        <line num="3" count="4" type="stmt"/>
       </file>
     </package>
     <package name="utils">
