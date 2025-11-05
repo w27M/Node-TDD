@@ -4,7 +4,7 @@ module.exports = {
     coverageDirectory: 'coverage',
     testEnvironment: 'node',
     preset: '@shelf/jest-mongodb',
-    testMatch: ['**/*.spec.ts', '**/*.tests.ts'],
+    testMatch: ['**/*.spec.ts', '**/*.test.ts'],
     testPathIgnorePatterns: ['/node_modules/', '/dist/'],
     coveragePathIgnorePatterns: [
         '/data/protocols/',
