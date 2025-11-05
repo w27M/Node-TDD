@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon --exec sucrase-node src/main/server.ts",
+    "start": "sucrase-node src/main/server.ts",
     "test": "jest --silent --noStackTrace --runInBand",
     "test:unit": "jest --watch -c jest-unit-config.js",
     "test:integration": "jest --watch -c jest-integration-config.js",
@@ -21,11 +23,15 @@
     "@types/validator": "^13.15.3",
     "git-commit-msg-linter": "^5.0.8",
     "jest": "^30.2.0",
+    "nodemon": "^3.1.10",
+    "sucrase": "^3.35.0",
     "ts-jest": "^29.4.4",
     "typescript": "^5.9.3"
   },
   "dependencies": {
+    "@types/express": "^5.0.5",
     "bcrypt": "^6.0.0",
+    "express": "^5.1.0",
     "mongodb": "^6.20.0",
     "validator": "^13.15.15"
   }
