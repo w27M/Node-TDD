@@ -3,7 +3,7 @@ import app from "../../main/config/app";
 
 describe('Body-Parser middleware', () => {
 
-    it('should parse body as jason', async () => {
+    it('should parse body as json', async () => {
         app.post('/test_body_parser', (req, res) => {
             res.send(req.body);
         });
