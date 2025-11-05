@@ -22,7 +22,3 @@ It uses **Express** for the HTTP layer, **MongoDB** as the database, and **Jest*
 - 📦 Modern dev tools: **Nodemon**, **Sucrase**, **ts-jest**
 - 💡 100% written in **TypeScript**
 
----
-
-## 🏗️ Project Structure
-
