@@ -159,7 +159,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:src/tests/helpers/add-account-stub.ts
+SF:src/tests/helpers/add-account.ts
 FN:5,(anonymous_0)
 FN:13,(anonymous_1)
 FNF:2

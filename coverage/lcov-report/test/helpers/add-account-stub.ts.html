@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for test/helpers/add-account-stub.ts</title>
+    <title>Code coverage report for test/helpers/add-account.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">test/helpers</a> add-account-stub.ts</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">test/helpers</a> add-account.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -96,7 +96,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {AddAccount, AddAccountModel} from "../../domain/usecases/add-account";
 import {AccountModel} from "../../domain/models/account";
 &nbsp;
-export class AddAccountStub implements AddAccount {
+export class AddAccount implements AddAccount {
     async add (account: AddAccountModel): Promise&lt;AccountModel&gt; {
         const fakeAccount = {
             id: 'valid_id',
@@ -127,4 +127,3 @@ export class AddAccountStub implements AddAccount {
         <script src="../../block-navigation.js"></script>
     </body>
 </html>
-    
