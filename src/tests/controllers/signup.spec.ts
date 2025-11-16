@@ -1,7 +1,6 @@
 import {SignUpController} from "../../presentation/controllers/signup/signup";
 import {EmailValidator} from '../../presentation/protocols/email-validator';
 import {InvalidParamError, MissingParamError, ServerError} from "../../presentation/errors";
-import {AddAccount} from "../../domain/usecases/add-account";
 import {EmailValidatorStub} from "../helpers/email-validator-stub";
 import {AddAccount} from "../../data/usecases/add-account/add-account";
 
@@ -29,7 +28,7 @@ const makeEmailValidator = (): EmailValidator => {
 }
 
 const makeAddAccount = (): AddAccount => {
-    return new AddAccount();
+    return new AddAccount;
 }
 
 describe('SignUp Controller', () => {
