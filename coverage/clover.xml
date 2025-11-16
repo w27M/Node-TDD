@@ -91,7 +91,7 @@
         <line num="6" count="3" type="stmt"/>
         <line num="12" count="3" type="stmt"/>
       </file>
-      <file name="add-account-stub.ts" path="/Users/marcossilva/Documents/Udemy/Node/CLEAN-NODE-API/src/tests/helpers/add-account-stub.ts">
+      <file name="add-account.ts" path="/Users/marcossilva/Documents/Udemy/Node/CLEAN-NODE-API/src/tests/helpers/add-account.ts">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="4" count="1" type="stmt"/>
         <line num="6" count="3" type="stmt"/>

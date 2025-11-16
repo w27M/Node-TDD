@@ -3,7 +3,7 @@ import {EmailValidator} from '../../presentation/protocols/email-validator';
 import {InvalidParamError, MissingParamError, ServerError} from "../../presentation/errors";
 import {AddAccount} from "../../domain/usecases/add-account";
 import {EmailValidatorStub} from "../helpers/email-validator-stub";
-import {AddAccountStub} from "../helpers/add-account-stub";
+import {AddAccount} from "../../data/usecases/add-account/add-account";
 
 interface SutTypes {
     sut: SignUpController;
@@ -29,7 +29,7 @@ const makeEmailValidator = (): EmailValidator => {
 }
 
 const makeAddAccount = (): AddAccount => {
-    return new AddAccountStub();
+    return new AddAccount();
 }
 
 describe('SignUp Controller', () => {
