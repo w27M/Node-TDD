@@ -4,7 +4,7 @@ import {MongoHelper} from "../../infra/db/mongodb/helpers/mongo-helper";
 
 describe("Signup routes", () => {
     beforeAll(async () => {
-        await MongoHelper.connect(process.env.MONGODB_URI);
+        await MongoHelper.connect('mongodb://localhost:27017/clean-node-api-test');
     });
 
     afterAll(async () => {
