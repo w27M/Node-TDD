@@ -1,19 +1,29 @@
 import {LogControllerDecorator} from "../../main/decorators/log";
-import {Controller, HttpRequest, HttpResponse} from "../../presentation/protocols";
+import {Controller} from "../../presentation/protocols";
 import {ControllerStub} from "../helpers/controller-decorator-stub";
+import {serverError} from "../../presentation/helpers/http-helper";
+import {LogErrorRepository} from "../../data/protocols/log-error-repository";
+import {LogErrorRepositoryStub} from "../helpers/log-error-repository";
 
 interface SutTypes {
     sut: LogControllerDecorator;
     controllerStub: Controller;
+    logErrorRepositoryStub: LogErrorRepository;
+}
+
+const makeLogErrorRepository = (): LogErrorRepository => {
+    return new LogErrorRepositoryStub();
 }
 
 const makeSut = ():SutTypes => {
     const controllerStub = new ControllerStub();
-    const sut = new LogControllerDecorator(controllerStub);
+    const logErrorRepositoryStub = makeLogErrorRepository();
+    const sut = new LogControllerDecorator(controllerStub, logErrorRepositoryStub);
 
     return {
         sut,
-        controllerStub
+        controllerStub,
+        logErrorRepositoryStub
     }
 }
 
@@ -52,5 +62,26 @@ describe('Log Controller Decorator', () => {
                 password: "any_password",
                 passwordConfirmation: "any_password"
             }});
+    });
+
+    it('Should call LogError with correct error if controller returns a ServerError', async () => {
+        const {sut, controllerStub, logErrorRepositoryStub} = makeSut();
+        const fakeError = new Error();
+        fakeError.stack = "any_stack";
+        const error =  serverError(fakeError);
+
+        jest.spyOn(controllerStub, 'handle')
+            .mockReturnValueOnce(new Promise(resolve => resolve(error)));
+        const logSpy = jest.spyOn(logErrorRepositoryStub, 'log')
+        const httpRequest = {
+            body: {
+                name: 'valid_name',
+                email: 'valid_email@mail.com',
+                password: 'valid_password',
+                passwordConfirmation: 'valid_password',
+            }
+        }
+        await sut.handle(httpRequest);
+        expect(logSpy).toHaveBeenCalledWith("any_stack");
     });
 })
