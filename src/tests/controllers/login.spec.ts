@@ -13,7 +13,7 @@ const makeFakeRequest = (): HttpRequest => ({
 });
 
 describe('Login Controller', () => {
-    it('should return 400 if no email provided', async () => {
+    it('should return 400 if email not provided', async () => {
         const sut = new LoginController();
         const httpRequest = makeFakeRequest();
 
@@ -23,5 +23,17 @@ describe('Login Controller', () => {
 
         const httpResponse = await sut.handle(httpRequest);
         expect(httpResponse).toEqual(badRequest(new MissingParamError('email')));
+    });
+
+    it('should return 400 if password not provided', async () => {
+        const sut = new LoginController();
+        const httpRequest = makeFakeRequest();
+
+        delete httpRequest.body.name;
+        delete httpRequest.body.password;
+        delete httpRequest.body.password_confirmation;
+
+        const httpResponse = await sut.handle(httpRequest);
+        expect(httpResponse).toEqual(badRequest(new MissingParamError('password')));
     });
 });
