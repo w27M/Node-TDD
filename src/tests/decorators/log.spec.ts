@@ -1,5 +1,5 @@
 import {LogControllerDecorator} from "../../main/decorators/log";
-import {Controller} from "../../presentation/protocols";
+import {Controller, HttpRequest} from "../../presentation/protocols";
 import {ControllerStub} from "../helpers/controller-decorator-stub";
 import {serverError} from "../../presentation/helpers/http-helper";
 import {LogErrorRepository} from "../../data/protocols/log-error-repository";
@@ -10,6 +10,14 @@ interface SutTypes {
     controllerStub: Controller;
     logErrorRepositoryStub: LogErrorRepository;
 }
+
+const makeFakeRequest = (): HttpRequest => ({
+    body: {
+        name: "any_name",
+        email: "any_email@email.com",
+        password: "any_password",
+    }
+});
 
 const makeLogErrorRepository = (): LogErrorRepository => {
     return new LogErrorRepositoryStub();
@@ -31,16 +39,8 @@ describe('Log Controller Decorator', () => {
     it('should call controller handle', async () => {
         const {controllerStub, sut} = makeSut();
         const handleSpy = jest.spyOn(controllerStub, 'handle');
-        const httpRequest = {
-            body: {
-                name: "any_name",
-                email: "any_email@email.com",
-                password: "any_password",
-                passwordConfirmation: "any_password"
-            }
-        }
-        await sut.handle(httpRequest);
-        expect(handleSpy).toHaveBeenCalledWith(httpRequest);
+        await sut.handle(makeFakeRequest());
+        expect(handleSpy).toHaveBeenCalledWith(makeFakeRequest());
     });
 
     it('should return the same result of the controller', async () => {
@@ -72,16 +72,8 @@ describe('Log Controller Decorator', () => {
 
         jest.spyOn(controllerStub, 'handle')
             .mockReturnValueOnce(new Promise(resolve => resolve(error)));
-        const logSpy = jest.spyOn(logErrorRepositoryStub, 'log')
-        const httpRequest = {
-            body: {
-                name: 'valid_name',
-                email: 'valid_email@mail.com',
-                password: 'valid_password',
-                passwordConfirmation: 'valid_password',
-            }
-        }
-        await sut.handle(httpRequest);
+        const logSpy = jest.spyOn(logErrorRepositoryStub, 'logError')
+        await sut.handle(makeFakeRequest());
         expect(logSpy).toHaveBeenCalledWith("any_stack");
     });
 })
