@@ -1,7 +1,7 @@
 import {LoginController} from "../../presentation/controllers/login/login";
 import {HttpRequest} from "../../presentation/protocols";
 import {badRequest} from "../../presentation/helpers/http-helper";
-import {MissingParamError} from "../../presentation/errors";
+import {InvalidParamError, MissingParamError} from "../../presentation/errors";
 import {EmailValidator} from "../../presentation/protocols/email-validator";
 
 interface SuTypes {
@@ -73,6 +73,15 @@ describe('Login Controller', () => {
 
         await sut.handle(httpRequest);
         expect(isValidSpy).toHaveBeenCalledWith('any_email@email.com');
+    });
+
+    it('should return 400 if an invalid email is provided', async () => {
+        const {sut, makeEmailValidatorStub} = makeSut();
+        jest.spyOn(makeEmailValidatorStub, 'isValid').mockReturnValueOnce(false);
+        const httpRequest = makeFakeRequest();
+
+        const httpResponse = await sut.handle(httpRequest);
+        expect(httpResponse.body).toEqual(new InvalidParamError('email'));
     });
 
 });
