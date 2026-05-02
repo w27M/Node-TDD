@@ -2,18 +2,18 @@ import {SignUpController} from "../../presentation/controllers/signup/signup";
 import {EmailValidatorAdapter} from "../../utils/email-validator-adapter";
 import {DbAddAccount} from "../../data/usecases/add-account/db-add-account";
 import {BcryptAdapter} from "../../infra/criptography/bcrypt-adapter";
-import {AccountMongoRepository} from "../../infra/db/mongodb/account-repository/accounts";
+import {AccountMySQLRepository} from "../../infra/db/mysql/account-repository/accounts";
 import {Controller} from "../../presentation/protocols";
 import {LogControllerDecorator} from "../decorators/log";
-import {LogMongoRepository} from "../../infra/db/mongodb/log-repository/logMongoRepository";
+import {LogMySQLRepository} from "../../infra/db/mysql/log-repository/log-repository";
 
 export const makeSignUpController = (): Controller  => {
     const salt = 12;
     const emailValidator = new EmailValidatorAdapter();
     const bcryptAdapter = new BcryptAdapter(salt);
-    const accountMongoRepository = new AccountMongoRepository();
-    const dbAddAccount = new DbAddAccount(bcryptAdapter, accountMongoRepository);
+    const accountMySQLRepository = new AccountMySQLRepository();
+    const dbAddAccount = new DbAddAccount(bcryptAdapter, accountMySQLRepository);
     const signUpController = new SignUpController(emailValidator, dbAddAccount);
-    const logMongoRepository = new LogMongoRepository();
-    return new LogControllerDecorator(signUpController, logMongoRepository);
+    const logMySQLRepository = new LogMySQLRepository();
+    return new LogControllerDecorator(signUpController, logMySQLRepository);
 }

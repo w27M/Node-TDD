@@ -1,3 +1,4 @@
+/*
 import {MongoHelper} from "../../../../infra/db/mongodb/helpers/mongo-helper";
 import {AccountMongoRepository} from "../../../../infra/db/mongodb/account-repository/accounts";
 
@@ -17,6 +18,44 @@ describe('Account Mongo Repository', () => {
 
     const makeSut = (): AccountMongoRepository => {
         return new AccountMongoRepository();
+    }
+
+    it('should return an account on success', async () => {
+        const sut = makeSut();
+        const account = await sut.add({
+            name: 'any_name',
+            email: 'any_email@mail.com',
+            password: 'any_password',
+        });
+
+        expect(account).toBeTruthy();
+        expect(account.id).toBeTruthy();
+        expect(account.name).toBe('any_name');
+        expect(account.email).toBe('any_email@mail.com');
+        expect(account.password).toBe('any_password');
+    });
+})
+*/
+
+import {MySQLHelper} from "../../../../infra/db/mysql/helpers/mysql-helper";
+import {AccountMySQLRepository} from "../../../../infra/db/mysql/account-repository/accounts";
+import env from "../../../../../env";
+
+describe('Account MySQL Repository', () => {
+    beforeAll(async () => {
+        await MySQLHelper.connect(env.mysqlConfig);
+    });
+
+    afterAll(async () => {
+        await MySQLHelper.disconnect();
+    });
+
+    beforeEach(async () => {
+        await MySQLHelper.execute("DELETE FROM accounts");
+    })
+
+    const makeSut = (): AccountMySQLRepository => {
+        return new AccountMySQLRepository();
     }
 
     it('should return an account on success', async () => {

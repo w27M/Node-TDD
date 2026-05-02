@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1763933831701" clover="3.2.0">
-  <project timestamp="1763933831701" name="All files">
-    <metrics statements="127" coveredstatements="121" conditionals="8" coveredconditionals="6" methods="38" coveredmethods="35" elements="173" coveredelements="162" complexity="0" loc="127" ncloc="127" packages="15" files="27" classes="27"/>
+<coverage generated="1777765347276" clover="3.2.0">
+  <project timestamp="1777765347276" name="All files">
+    <metrics statements="194" coveredstatements="176" conditionals="20" coveredconditionals="17" methods="54" coveredmethods="48" elements="268" coveredelements="241" complexity="0" loc="194" ncloc="194" packages="21" files="35" classes="35"/>
     <package name="data.usecases.add-account">
       <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
       <file name="add-account.ts" path="/Users/marcossilva/Documents/Udemy/Node/CLEAN-NODE-API/src/data/usecases/add-account/add-account.ts">
@@ -29,8 +29,47 @@
       </file>
     </package>
     <package name="infra.db.mongodb.account-repository">
-      <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
       <file name="accounts.ts" path="/Users/marcossilva/Documents/Udemy/Node/CLEAN-NODE-API/src/infra/db/mongodb/account-repository/accounts.ts">
+        <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="infra.db.mongodb.helpers">
+      <metrics statements="11" coveredstatements="9" conditionals="2" coveredconditionals="1" methods="4" coveredmethods="3"/>
+      <file name="mongo-helper.ts" path="/Users/marcossilva/Documents/Udemy/Node/CLEAN-NODE-API/src/infra/db/mongodb/helpers/mongo-helper.ts">
+        <metrics statements="11" coveredstatements="9" conditionals="2" coveredconditionals="1" methods="4" coveredmethods="3"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="10" count="3" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="19" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="20" count="2" type="stmt"/>
+        <line num="22" count="2" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="infra.db.mongodb.log-repository">
+      <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="logMongoRepository.ts" path="/Users/marcossilva/Documents/Udemy/Node/CLEAN-NODE-API/src/infra/db/mongodb/log-repository/logMongoRepository.ts">
+        <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="infra.db.mysql.account-repository">
+      <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="accounts.ts" path="/Users/marcossilva/Documents/Udemy/Node/CLEAN-NODE-API/src/infra/db/mysql/account-repository/accounts.ts">
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="4" count="5" type="stmt"/>
         <line num="6" count="5" type="stmt"/>
@@ -40,18 +79,28 @@
         <line num="11" count="2" type="stmt"/>
       </file>
     </package>
-    <package name="infra.db.mongodb.helpers">
-      <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
-      <file name="mongo-helper.ts" path="/Users/marcossilva/Documents/Udemy/Node/CLEAN-NODE-API/src/infra/db/mongodb/helpers/mongo-helper.ts">
-        <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
-        <line num="1" count="5" type="stmt"/>
-        <line num="3" count="5" type="stmt"/>
-        <line num="6" count="2" type="stmt"/>
-        <line num="10" count="2" type="stmt"/>
-        <line num="11" count="2" type="stmt"/>
-        <line num="15" count="4" type="stmt"/>
-        <line num="19" count="2" type="stmt"/>
-        <line num="20" count="2" type="stmt"/>
+    <package name="infra.db.mysql.helpers">
+      <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="1" methods="3" coveredmethods="3"/>
+      <file name="mysql-helper.ts" path="/Users/marcossilva/Documents/Udemy/Node/CLEAN-NODE-API/src/infra/db/mysql/helpers/mysql-helper.ts">
+        <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="1" methods="3" coveredmethods="3"/>
+        <line num="1" count="6" type="stmt"/>
+        <line num="3" count="6" type="stmt"/>
+        <line num="7" count="3" type="stmt"/>
+        <line num="11" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="12" count="3" type="stmt"/>
+        <line num="14" count="3" type="stmt"/>
+        <line num="18" count="7" type="stmt"/>
+        <line num="19" count="7" type="stmt"/>
+      </file>
+    </package>
+    <package name="infra.db.mysql.log-repository">
+      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="log-repository.ts" path="/Users/marcossilva/Documents/Udemy/Node/CLEAN-NODE-API/src/infra/db/mysql/log-repository/log-repository.ts">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
       </file>
     </package>
     <package name="main">
@@ -66,18 +115,20 @@
       </file>
     </package>
     <package name="main.adapters">
-      <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <metrics statements="7" coveredstatements="6" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
       <file name="express-routes-adapter.ts" path="/Users/marcossilva/Documents/Udemy/Node/CLEAN-NODE-API/src/main/adapters/express-routes-adapter.ts">
-        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <metrics statements="7" coveredstatements="6" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
         <line num="4" count="4" type="stmt"/>
         <line num="5" count="4" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
         <line num="9" count="1" type="stmt"/>
-        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
       </file>
     </package>
     <package name="main.config">
-      <metrics statements="19" coveredstatements="18" conditionals="2" coveredconditionals="0" methods="4" coveredmethods="4"/>
+      <metrics statements="18" coveredstatements="18" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
       <file name="app.ts" path="/Users/marcossilva/Documents/Udemy/Node/CLEAN-NODE-API/src/main/config/app.ts">
         <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="4" type="stmt"/>
@@ -87,10 +138,6 @@
         <line num="6" count="4" type="stmt"/>
         <line num="7" count="4" type="stmt"/>
         <line num="8" count="4" type="stmt"/>
-      </file>
-      <file name="env.ts" path="/Users/marcossilva/Documents/Udemy/Node/CLEAN-NODE-API/src/main/config/env.ts">
-        <metrics statements="1" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="0" type="stmt"/>
       </file>
       <file name="middlewares.ts" path="/Users/marcossilva/Documents/Udemy/Node/CLEAN-NODE-API/src/main/config/middlewares.ts">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
@@ -110,10 +157,23 @@
         <line num="7" count="4" type="stmt"/>
       </file>
     </package>
+    <package name="main.decorators">
+      <metrics statements="7" coveredstatements="7" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+      <file name="log.ts" path="/Users/marcossilva/Documents/Udemy/Node/CLEAN-NODE-API/src/main/decorators/log.ts">
+        <metrics statements="7" coveredstatements="7" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="5" count="7" type="stmt"/>
+        <line num="8" count="4" type="stmt"/>
+        <line num="9" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="14" count="4" type="stmt"/>
+      </file>
+    </package>
     <package name="main.factories">
-      <metrics statements="12" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <metrics statements="16" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="signup.ts" path="/Users/marcossilva/Documents/Udemy/Node/CLEAN-NODE-API/src/main/factories/signup.ts">
-        <metrics statements="12" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <metrics statements="16" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="4" type="stmt"/>
         <line num="2" count="4" type="stmt"/>
         <line num="3" count="4" type="stmt"/>
@@ -121,11 +181,15 @@
         <line num="5" count="4" type="stmt"/>
         <line num="7" count="4" type="stmt"/>
         <line num="8" count="4" type="stmt"/>
-        <line num="9" count="4" type="stmt"/>
         <line num="10" count="4" type="stmt"/>
         <line num="11" count="4" type="stmt"/>
         <line num="12" count="4" type="stmt"/>
         <line num="13" count="4" type="stmt"/>
+        <line num="14" count="4" type="stmt"/>
+        <line num="15" count="4" type="stmt"/>
+        <line num="16" count="4" type="stmt"/>
+        <line num="17" count="4" type="stmt"/>
+        <line num="18" count="4" type="stmt"/>
       </file>
     </package>
     <package name="main.middlewares">
@@ -166,6 +230,30 @@
         <line num="6" count="4" type="stmt"/>
       </file>
     </package>
+    <package name="presentation.controllers.login">
+      <metrics statements="18" coveredstatements="18" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
+      <file name="login.ts" path="/Users/marcossilva/Documents/Udemy/Node/CLEAN-NODE-API/src/presentation/controllers/login/login.ts">
+        <metrics statements="18" coveredstatements="18" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="9" type="stmt"/>
+        <line num="9" count="9" type="stmt"/>
+        <line num="10" count="9" type="stmt"/>
+        <line num="11" count="9" type="stmt"/>
+        <line num="13" count="9" type="stmt"/>
+        <line num="14" count="17" type="cond" truecount="2" falsecount="0"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="19" count="7" type="stmt"/>
+        <line num="21" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="25" count="5" type="stmt"/>
+        <line num="26" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="30" count="3" type="stmt"/>
+        <line num="33" count="2" type="stmt"/>
+      </file>
+    </package>
     <package name="presentation.controllers.signup">
       <metrics statements="18" coveredstatements="18" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
       <file name="signup.ts" path="/Users/marcossilva/Documents/Udemy/Node/CLEAN-NODE-API/src/presentation/controllers/signup/signup.ts">
@@ -191,49 +279,65 @@
       </file>
     </package>
     <package name="presentation.errors">
-      <metrics statements="12" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+      <metrics statements="17" coveredstatements="17" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
       <file name="index.ts" path="/Users/marcossilva/Documents/Udemy/Node/CLEAN-NODE-API/src/presentation/errors/index.ts">
-        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="5" type="stmt"/>
-        <line num="2" count="5" type="stmt"/>
-        <line num="3" count="5" type="stmt"/>
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="7" type="stmt"/>
+        <line num="2" count="7" type="stmt"/>
+        <line num="3" count="7" type="stmt"/>
+        <line num="4" count="7" type="stmt"/>
       </file>
       <file name="invalid-param-error.ts" path="/Users/marcossilva/Documents/Udemy/Node/CLEAN-NODE-API/src/presentation/errors/invalid-param-error.ts">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="1" count="5" type="stmt"/>
-        <line num="3" count="4" type="stmt"/>
-        <line num="4" count="4" type="stmt"/>
+        <line num="1" count="7" type="stmt"/>
+        <line num="3" count="6" type="stmt"/>
+        <line num="4" count="6" type="stmt"/>
       </file>
       <file name="missing-param-error.ts" path="/Users/marcossilva/Documents/Udemy/Node/CLEAN-NODE-API/src/presentation/errors/missing-param-error.ts">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="1" count="5" type="stmt"/>
-        <line num="3" count="8" type="stmt"/>
-        <line num="4" count="8" type="stmt"/>
+        <line num="1" count="7" type="stmt"/>
+        <line num="3" count="12" type="stmt"/>
+        <line num="4" count="12" type="stmt"/>
       </file>
       <file name="server-error.ts" path="/Users/marcossilva/Documents/Udemy/Node/CLEAN-NODE-API/src/presentation/errors/server-error.ts">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="7" type="stmt"/>
+        <line num="3" count="11" type="stmt"/>
+        <line num="4" count="11" type="stmt"/>
+        <line num="5" count="11" type="stmt"/>
+      </file>
+      <file name="unsuthorized-error.ts" path="/Users/marcossilva/Documents/Udemy/Node/CLEAN-NODE-API/src/presentation/errors/unsuthorized-error.ts">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="1" count="5" type="stmt"/>
-        <line num="3" count="4" type="stmt"/>
-        <line num="4" count="4" type="stmt"/>
+        <line num="1" count="7" type="stmt"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="4" count="2" type="stmt"/>
       </file>
     </package>
     <package name="presentation.helpers">
-      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+      <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
       <file name="http-helper.ts" path="/Users/marcossilva/Documents/Udemy/Node/CLEAN-NODE-API/src/presentation/helpers/http-helper.ts">
-        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
-        <line num="2" count="5" type="stmt"/>
-        <line num="4" count="6" type="stmt"/>
-        <line num="10" count="5" type="stmt"/>
-        <line num="15" count="5" type="stmt"/>
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
+        <line num="2" count="7" type="stmt"/>
+        <line num="3" count="7" type="stmt"/>
+        <line num="5" count="17" type="stmt"/>
+        <line num="11" count="9" type="stmt"/>
+        <line num="16" count="9" type="stmt"/>
+        <line num="21" count="7" type="stmt"/>
       </file>
     </package>
     <package name="tests.helpers">
-      <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="5"/>
+      <metrics statements="12" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="9" coveredmethods="9"/>
       <file name="add-account-repository-stub.ts" path="/Users/marcossilva/Documents/Udemy/Node/CLEAN-NODE-API/src/tests/helpers/add-account-repository-stub.ts">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="4" count="1" type="stmt"/>
         <line num="6" count="3" type="stmt"/>
         <line num="12" count="3" type="stmt"/>
+      </file>
+      <file name="controller-decorator-stub.ts" path="/Users/marcossilva/Documents/Udemy/Node/CLEAN-NODE-API/src/tests/helpers/controller-decorator-stub.ts">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="14" count="2" type="stmt"/>
       </file>
       <file name="email-validator-stub.ts" path="/Users/marcossilva/Documents/Udemy/Node/CLEAN-NODE-API/src/tests/helpers/email-validator-stub.ts">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
@@ -244,6 +348,11 @@
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="4" type="stmt"/>
+      </file>
+      <file name="log-error-repository.ts" path="/Users/marcossilva/Documents/Udemy/Node/CLEAN-NODE-API/src/tests/helpers/log-error-repository.ts">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
       </file>
     </package>
     <package name="utils">

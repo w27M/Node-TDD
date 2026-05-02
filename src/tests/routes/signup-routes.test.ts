@@ -1,19 +1,19 @@
 import request from "supertest";
 import app from "../../main/config/app";
-import {MongoHelper} from "../../infra/db/mongodb/helpers/mongo-helper";
+import {MySQLHelper} from "../../infra/db/mysql/helpers/mysql-helper";
+import env from "../../../env";
 
 describe("Signup routes", () => {
     beforeAll(async () => {
-        await MongoHelper.connect('mongodb://localhost:27017/clean-node-api-test');
+        await MySQLHelper.connect(env.mysqlConfig);
     });
 
     afterAll(async () => {
-        await MongoHelper.disconnect();
+        await MySQLHelper.disconnect();
     });
 
     beforeEach(async () => {
-        const accountCollection = await MongoHelper.getCollection("accounts");
-        await accountCollection.deleteMany({});
+        await MySQLHelper.execute("DELETE FROM accounts");
     })
     it('should return an account on success', async () => {
         await request(app)
