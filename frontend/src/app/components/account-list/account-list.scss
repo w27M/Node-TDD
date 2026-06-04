@@ -1,0 +1,375 @@
+@use '../../../styles/variables' as *;
+
+.list-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: $fb-bg-gray;
+  padding: 40px 20px;
+}
+
+.list-card-container {
+  width: 70%;
+  max-width: 1000px;
+  min-width: 320px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+::ng-deep .list-card-container .p-card {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  border: none !important;
+  border-radius: 8px !important;
+  color: $fb-text-dark !important;
+  padding: 30px;
+}
+
+::ng-deep .list-card-container .p-card-body,
+::ng-deep .list-card-container .p-card-content {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: $fb-text-dark !important;
+}
+
+.card-header {
+  text-align: center;
+  margin-bottom: 25px;
+  background-color: #ffffff !important;
+}
+
+.card-header h2 {
+  color: $fb-blue !important; /* Force Bright Facebook Blue */
+  font-size: 32px;
+  font-weight: 800;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.5px;
+  background-color: #ffffff !important;
+}
+
+.subtitle {
+  color: $fb-text-gray !important; /* Force Facebook secondary text color */
+  font-size: 16px;
+  margin: 0;
+  background-color: #ffffff !important;
+}
+
+.action-bar {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+  gap: 12px;
+  background-color: #ffffff !important;
+  align-items: center;
+}
+
+.action-buttons-right {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* Customize buttons to match Facebook aesthetic */
+::ng-deep .p-button {
+  border-radius: 6px !important;
+}
+
+::ng-deep .action-bar .p-button-secondary {
+  background-color: $fb-btn-secondary-bg !important; /* Facebook light-grey secondary button */
+  color: $fb-text-black !important;
+  border: none !important;
+}
+
+::ng-deep .action-bar .p-button-secondary:hover {
+  background-color: $fb-btn-secondary-hover !important;
+}
+
+/* Danger/Delete Button: Facebook Red */
+::ng-deep .action-bar .p-button-danger {
+  background-color: $fb-btn-danger-bg !important;
+  color: #ffffff !important;
+  border: none !important;
+}
+
+::ng-deep .action-bar .p-button-danger:hover:not(:disabled) {
+  background-color: $fb-btn-danger-hover !important;
+}
+
+/* Primary/Refresh Button: Facebook Blue */
+::ng-deep .action-bar .p-button:not(.p-button-secondary):not(.p-button-danger) {
+  background-color: $fb-blue !important;
+  border: none !important;
+}
+
+::ng-deep .action-bar .p-button:not(.p-button-secondary):not(.p-button-danger):hover:not(:disabled) {
+  background-color: $fb-blue-hover !important;
+}
+
+.table-wrapper {
+  border-radius: 8px;
+  border: 1px solid $fb-border-gray;
+  background-color: #ffffff;
+  /* Prevent scrolling up when dropdown overlay opens by allowing natural overflow */
+  overflow: visible !important;
+}
+
+/* Customizing PrimeNG Table for Facebook Theme */
+::ng-deep .p-datatable {
+  background-color: transparent !important;
+  overflow: visible !important;
+}
+
+::ng-deep .p-datatable-table-container {
+  /* Prevent horizontal scrolling box from clipping the dropdown overlay */
+  overflow: visible !important;
+}
+
+::ng-deep .p-datatable .p-datatable-thead > tr > th {
+  background-color: $fb-bg-gray !important; /* Facebook background grey */
+  color: $fb-text-dark !important;
+  font-weight: 700;
+  border-bottom: 1px solid $fb-border-gray !important;
+  padding: 14px 20px;
+}
+
+::ng-deep .p-datatable .p-datatable-tbody > tr {
+  background-color: #ffffff !important;
+  color: $fb-text-dark !important;
+  transition: background-color 0.15s ease;
+}
+
+::ng-deep .p-datatable .p-datatable-tbody > tr:hover {
+  background-color: $fb-bg-gray !important; /* Soft hover effect */
+}
+
+::ng-deep .p-datatable .p-datatable-tbody > tr > td {
+  padding: 14px 20px;
+  border-bottom: 1px solid $fb-border-gray !important;
+}
+
+/* Paginator Container */
+::ng-deep .p-datatable .p-paginator {
+  background-color: $fb-bg-gray !important; /* Facebook light grey for paginator */
+  color: $fb-text-black !important;
+  border: none !important;
+  border-top: 1px solid $fb-border-gray !important;
+  padding: 8px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  min-height: 56px !important;
+  overflow: visible !important;
+}
+
+::ng-deep .p-paginator .p-paginator-page,
+::ng-deep .p-paginator .p-paginator-next,
+::ng-deep .p-paginator .p-paginator-last,
+::ng-deep .p-paginator .p-paginator-first,
+::ng-deep .p-paginator .p-paginator-prev {
+  color: $fb-text-gray !important;
+}
+
+::ng-deep .p-paginator .p-paginator-page.p-highlight {
+  background-color: $fb-blue !important; /* Facebook blue for active page */
+  color: #ffffff !important;
+}
+
+/* Style the rows-per-page dropdown (p-select) to be larger, elegant and properly aligned */
+::ng-deep .p-paginator .p-paginator-rpp-dropdown.p-select {
+  height: 38px !important;
+  min-width: 80px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  background-color: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 6px !important;
+  padding: 4px 12px !important;
+  cursor: pointer !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+}
+
+::ng-deep .p-paginator .p-paginator-rpp-dropdown.p-select:hover {
+  background-color: $fb-bg-gray !important;
+  border-color: #b0b3b8 !important;
+}
+
+::ng-deep .p-paginator .p-paginator-rpp-dropdown .p-select-label {
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: $fb-text-dark !important;
+  padding: 0 !important;
+  line-height: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+::ng-deep .p-paginator .p-paginator-rpp-dropdown .p-select-dropdown {
+  color: $fb-text-gray !important;
+  margin-left: 8px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* PrimeNG Select Overlay panel */
+::ng-deep .p-select-overlay {
+  background-color: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  z-index: 100000 !important; /* Ensure it stays above everything */
+}
+
+::ng-deep .p-select-overlay .p-select-option {
+  color: $fb-text-dark !important;
+  padding: 10px 14px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  background-color: #ffffff !important;
+}
+
+::ng-deep .p-select-overlay .p-select-option:hover {
+  background-color: $fb-bg-gray !important;
+}
+
+::ng-deep .p-select-overlay .p-select-option.p-highlight {
+  background-color: $fb-blue !important;
+  color: #ffffff !important;
+}
+
+.col-id {
+  font-family: monospace;
+  color: $fb-blue;
+  font-weight: bold;
+}
+
+.col-name {
+  font-weight: 500;
+  color: $fb-text-dark;
+}
+
+.col-email {
+  color: $fb-text-gray;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Customizing Checkboxes for the Account List component */
+::ng-deep .p-checkbox {
+  --p-checkbox-background: #{$checkbox-bg} !important;
+  --p-checkbox-border-color: #{$checkbox-border} !important;
+  --p-checkbox-hover-border-color: #{$checkbox-border-hover} !important;
+
+  /* Checked states (must keep white background) */
+  --p-checkbox-checked-background: #{$checkbox-bg} !important;
+  --p-checkbox-checked-border-color: #{$checkbox-navy} !important;
+  --p-checkbox-checked-hover-background: #{$checkbox-bg} !important;
+  --p-checkbox-checked-hover-border-color: #{$checkbox-navy-hover} !important;
+
+  /* Checkmark icon color (must be navy) */
+  --p-checkbox-icon-checked-color: #{$checkbox-navy} !important;
+  --p-checkbox-icon-checked-hover-color: #{$checkbox-navy-hover} !important;
+}
+
+/* Fallback class overrides to ensure complete compatibility regardless of theme settings */
+::ng-deep .p-checkbox .p-checkbox-box {
+  background-color: $checkbox-bg !important;
+  border: 1px solid $checkbox-border !important;
+}
+
+::ng-deep .p-checkbox:not(.p-checkbox-disabled):hover .p-checkbox-box {
+  border-color: $checkbox-border-hover !important;
+}
+
+/* When the checkbox is checked (has p-highlight or checked state attribute) */
+::ng-deep .p-checkbox.p-checkbox-checked .p-checkbox-box,
+::ng-deep .p-checkbox .p-checkbox-box.p-highlight,
+::ng-deep .p-checkbox .p-checkbox-box[data-p-highlight="true"] {
+  background-color: $checkbox-bg !important;
+  border-color: $checkbox-navy !important;
+}
+
+::ng-deep .p-checkbox.p-checkbox-checked:not(.p-checkbox-disabled):hover .p-checkbox-box,
+::ng-deep .p-checkbox:not(.p-checkbox-disabled):hover .p-checkbox-box.p-highlight {
+  background-color: $checkbox-bg !important;
+  border-color: $checkbox-navy-hover !important;
+}
+
+/* Style the checkmark icon to be navy */
+::ng-deep .p-checkbox .p-checkbox-box .p-checkbox-icon {
+  color: $checkbox-navy !important;
+}
+
+/* Customizing Success and Error Toasts for the Account List Component */
+::ng-deep .p-toast-message-success {
+  background-color: $toast-success-bg !important; /* Soft light green background */
+  border: 1px solid $toast-success-border !important;
+  border-radius: 6px !important;
+}
+
+::ng-deep .p-toast-message-success,
+::ng-deep .p-toast-message-success .p-toast-message-content,
+::ng-deep .p-toast-message-success .p-toast-message-text,
+::ng-deep .p-toast-message-success .p-toast-summary,
+::ng-deep .p-toast-message-success .p-toast-detail,
+::ng-deep .p-toast-message-success .p-toast-message-icon,
+::ng-deep .p-toast-message-success .p-toast-close-icon,
+::ng-deep .p-toast-message-success * {
+  --p-toast-success-summary-color: #{$toast-success-text} !important;
+  --p-toast-success-detail-color: #{$toast-success-text} !important;
+  --p-toast-success-icon-color: #{$toast-success-text} !important;
+  --p-toast-success-close-icon-color: #{$toast-success-text} !important;
+  --p-toast-summary-color: #{$toast-success-text} !important;
+  --p-toast-detail-color: #{$toast-success-text} !important;
+  --p-toast-icon-color: #{$toast-success-text} !important;
+  --p-toast-close-icon-color: #{$toast-success-text} !important;
+  color: $toast-success-text !important; /* Force dark green color on absolutely all elements/texts inside success toast */
+}
+
+::ng-deep .p-toast-message-success .p-toast-summary {
+  font-weight: 700 !important;
+  font-size: 15px !important;
+}
+
+::ng-deep .p-toast-message-success .p-toast-detail {
+  font-size: 14px !important;
+}
+
+/* Customizing PrimeNG Error Toast (Light Red, Dark Red Text) */
+::ng-deep .p-toast-message-error {
+  background-color: $toast-error-bg !important; /* Soft light red background */
+  border: 1px solid $toast-error-border !important;
+  border-radius: 6px !important;
+}
+
+::ng-deep .p-toast-message-error,
+::ng-deep .p-toast-message-error .p-toast-message-content,
+::ng-deep .p-toast-message-error .p-toast-message-text,
+::ng-deep .p-toast-message-error .p-toast-summary,
+::ng-deep .p-toast-message-error .p-toast-detail,
+::ng-deep .p-toast-message-error .p-toast-message-icon,
+::ng-deep .p-toast-message-error .p-toast-close-icon,
+::ng-deep .p-toast-message-error * {
+  --p-toast-error-summary-color: #{$toast-error-text} !important;
+  --p-toast-error-detail-color: #{$toast-error-text} !important;
+  --p-toast-error-icon-color: #{$toast-error-text} !important;
+  --p-toast-error-close-icon-color: #{$toast-error-text} !important;
+  --p-toast-summary-color: #{$toast-error-text} !important;
+  --p-toast-detail-color: #{$toast-error-text} !important;
+  --p-toast-icon-color: #{$toast-error-text} !important;
+  --p-toast-close-icon-color: #{$toast-error-text} !important;
+  color: $toast-error-text !important; /* Force dark red color on absolutely all elements/texts inside error toast */
+}
+
+::ng-deep .p-toast-message-error .p-toast-summary {
+  font-weight: 700 !important;
+  font-size: 15px !important;
+}
+
+::ng-deep .p-toast-message-error .p-toast-detail {
+  font-size: 14px !important;
+}

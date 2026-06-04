@@ -25,4 +25,27 @@ describe("Signup routes", () => {
                 passwordConfirmation: "123",
             }).expect(200);
     });
+
+    it('should return all accounts on GET', async () => {
+        await MySQLHelper.execute("INSERT INTO accounts (name, email, password) VALUES ('John', 'john@mail.com', '123')");
+        const response = await request(app)
+            .get("/api/accounts")
+            .expect(200);
+        expect(response.body.length).toBe(1);
+        expect(response.body[0].name).toBe("John");
+    });
+
+    it('should delete an account on DELETE', async () => {
+        const result: any = await MySQLHelper.execute("INSERT INTO accounts (name, email, password) VALUES ('John', 'john@mail.com', '123')");
+        const insertedId = result.insertId;
+
+        const response = await request(app)
+            .delete(`/api/accounts/${insertedId}`)
+            .expect(200);
+        
+        expect(response.body.success).toBe(true);
+
+        const accounts = await MySQLHelper.execute("SELECT * FROM accounts WHERE id = ?", [insertedId]);
+        expect(accounts.length).toBe(0);
+    });
 })

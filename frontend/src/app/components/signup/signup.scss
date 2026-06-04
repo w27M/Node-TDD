@@ -1,0 +1,221 @@
+@use '../../../styles/variables' as *;
+
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: $fb-bg-gray;
+  padding: 40px 20px;
+}
+
+.signup-card {
+  background: #ffffff;
+  border: none;
+  border-radius: 8px; /* Facebook standard border-radius */
+  width: 70%;
+  max-width: 1000px;
+  min-width: 320px;
+  padding: 40px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1); /* Facebook login card shadow */
+}
+
+.card-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.card-header h2 {
+  color: $fb-blue; /* Official Facebook Blue */
+  font-size: 36px;
+  font-weight: 800;
+  margin: 0 0 10px 0;
+  letter-spacing: -0.5px;
+}
+
+.card-header p {
+  color: $fb-text-gray; /* Facebook secondary text */
+  font-size: 16px;
+  margin: 0;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  color: $fb-text-dark; /* Facebook label color */
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 14px 16px; /* Facebook login input padding */
+  border-radius: 6px;
+  border: 1px solid $fb-border-gray; /* Facebook input border */
+  background-color: #ffffff;
+  color: $fb-text-dark;
+  font-size: 15px;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.input-wrapper input::placeholder {
+  color: #90949c;
+}
+
+.input-wrapper input:focus {
+  outline: none;
+  border-color: $fb-blue;
+  box-shadow: 0 0 0 2px #e7f3ff; /* Soft blue focus glow */
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.btn-submit {
+  flex: 1;
+  padding: 14px;
+  border: none;
+  border-radius: 6px;
+  background: $fb-blue; /* Official Facebook Blue button */
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-submit:hover {
+  background: $fb-blue-hover; /* Facebook active blue hover */
+}
+
+.btn-submit:disabled {
+  background: #cbd5e1;
+  color: #94a3b8;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.btn-secondary {
+  flex: 1;
+  padding: 14px;
+  border: none;
+  border-radius: 6px;
+  background: $fb-btn-secondary-bg; /* Facebook secondary gray background */
+  color: $fb-text-black; /* Dark gray/black text */
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-secondary:hover {
+  background: $fb-btn-secondary-hover; /* Hover Facebook gray */
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #ffffff;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Customizing Success and Error Toasts for the Signup Component */
+::ng-deep .p-toast-message-success {
+  background-color: $toast-success-bg !important; /* Soft light green background */
+  border: 1px solid $toast-success-border !important;
+  border-radius: 6px !important;
+}
+
+::ng-deep .p-toast-message-success,
+::ng-deep .p-toast-message-success .p-toast-message-content,
+::ng-deep .p-toast-message-success .p-toast-message-text,
+::ng-deep .p-toast-message-success .p-toast-summary,
+::ng-deep .p-toast-message-success .p-toast-detail,
+::ng-deep .p-toast-message-success .p-toast-message-icon,
+::ng-deep .p-toast-message-success .p-toast-close-icon,
+::ng-deep .p-toast-message-success * {
+  --p-toast-success-summary-color: #{$toast-success-text} !important;
+  --p-toast-success-detail-color: #{$toast-success-text} !important;
+  --p-toast-success-icon-color: #{$toast-success-text} !important;
+  --p-toast-success-close-icon-color: #{$toast-success-text} !important;
+  --p-toast-summary-color: #{$toast-success-text} !important;
+  --p-toast-detail-color: #{$toast-success-text} !important;
+  --p-toast-icon-color: #{$toast-success-text} !important;
+  --p-toast-close-icon-color: #{$toast-success-text} !important;
+  color: $toast-success-text !important; /* Force dark green color on absolutely all elements/texts inside success toast */
+}
+
+::ng-deep .p-toast-message-success .p-toast-summary {
+  font-weight: 700 !important;
+  font-size: 15px !important;
+}
+
+::ng-deep .p-toast-message-success .p-toast-detail {
+  font-size: 14px !important;
+}
+
+/* Customizing PrimeNG Error Toast (Light Red, Dark Red Text) */
+::ng-deep .p-toast-message-error {
+  background-color: $toast-error-bg !important; /* Soft light red background */
+  border: 1px solid $toast-error-border !important;
+  border-radius: 6px !important;
+}
+
+::ng-deep .p-toast-message-error,
+::ng-deep .p-toast-message-error .p-toast-message-content,
+::ng-deep .p-toast-message-error .p-toast-message-text,
+::ng-deep .p-toast-message-error .p-toast-summary,
+::ng-deep .p-toast-message-error .p-toast-detail,
+::ng-deep .p-toast-message-error .p-toast-message-icon,
+::ng-deep .p-toast-message-error .p-toast-close-icon,
+::ng-deep .p-toast-message-error * {
+  --p-toast-error-summary-color: #{$toast-error-text} !important;
+  --p-toast-error-detail-color: #{$toast-error-text} !important;
+  --p-toast-error-icon-color: #{$toast-error-text} !important;
+  --p-toast-error-close-icon-color: #{$toast-error-text} !important;
+  --p-toast-summary-color: #{$toast-error-text} !important;
+  --p-toast-detail-color: #{$toast-error-text} !important;
+  --p-toast-icon-color: #{$toast-error-text} !important;
+  --p-toast-close-icon-color: #{$toast-error-text} !important;
+  color: $toast-error-text !important; /* Force dark red color on absolutely all elements/texts inside error toast */
+}
+
+::ng-deep .p-toast-message-error .p-toast-summary {
+  font-weight: 700 !important;
+  font-size: 15px !important;
+}
+
+::ng-deep .p-toast-message-error .p-toast-detail {
+  font-size: 14px !important;
+}

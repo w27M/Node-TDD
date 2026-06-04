@@ -15,4 +15,20 @@ export class AccountMySQLRepository implements AddAccountRepository {
       password: accountData.password
     }
   }
+
+  async loadAll (): Promise<AccountModel[]> {
+    const query = 'SELECT id, name, email FROM accounts'
+    const result: any = await MySQLHelper.execute(query)
+    return result.map((row: any) => ({
+      id: row.id.toString(),
+      name: row.name,
+      email: row.email
+    }))
+  }
+
+  async delete (id: string): Promise<boolean> {
+    const query = 'DELETE FROM accounts WHERE id = ?'
+    const result: any = await MySQLHelper.execute(query, [id])
+    return result.affectedRows > 0
+  }
 }

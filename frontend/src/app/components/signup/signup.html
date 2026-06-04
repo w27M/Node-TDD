@@ -1,0 +1,84 @@
+<div class="signup-container">
+  <p-toast></p-toast>
+  <div class="signup-card">
+    <div class="card-header">
+      <h2>Create Account</h2>
+      <p>Fill in the details below to register</p>
+    </div>
+
+    <form (submit)="onSubmit(); $event.preventDefault()" class="signup-form">
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <div class="input-wrapper">
+          <input 
+            type="text" 
+            id="name" 
+            name="name" 
+            [ngModel]="name()" 
+            (ngModelChange)="name.set($event)"
+            placeholder="Enter your full name" 
+            required 
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <div class="input-wrapper">
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            [ngModel]="email()" 
+            (ngModelChange)="email.set($event)"
+            placeholder="example@email.com" 
+            required 
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="input-wrapper">
+          <input 
+            type="password" 
+            id="password" 
+            name="password" 
+            [ngModel]="password()" 
+            (ngModelChange)="password.set($event)"
+            placeholder="Your secret password" 
+            required 
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="passwordConfirmation">Confirm Password</label>
+        <div class="input-wrapper">
+          <input 
+            type="password" 
+            id="passwordConfirmation" 
+            name="passwordConfirmation" 
+            [ngModel]="passwordConfirmation()" 
+            (ngModelChange)="passwordConfirmation.set($event)"
+            placeholder="Confirm your password" 
+            required 
+          />
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" [disabled]="loading()" class="btn-submit">
+          @if (loading()) {
+            <span class="spinner"></span> Loading...
+          } @else {
+            Register
+          }
+        </button>
+        <button type="button" routerLink="/accounts" class="btn-secondary">
+          📋 View Registered Accounts
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

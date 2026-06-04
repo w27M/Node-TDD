@@ -1,0 +1,70 @@
+<div class="list-container">
+  <p-toast></p-toast>
+  <p-card class="list-card-container">
+    <div class="card-header">
+      <h2>Registered Accounts</h2>
+      <p class="subtitle">List of registered users saved in the MySQL database (via Docker)</p>
+    </div>
+
+    <div class="table-wrapper">
+      <p-table 
+        [value]="accounts()" 
+        dataKey="id"
+        [paginator]="true" 
+        [rows]="5" 
+        [loading]="loading()"
+        [rowsPerPageOptions]="[5, 10, 20]"
+        [selection]="selectedAccounts()"
+        (selectionChange)="selectedAccounts.set($event)"
+        styleClass="p-datatable-striped">
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 4rem">
+              <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+            </th>
+            <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+            <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-account>
+          <tr>
+            <td>
+              <p-tableCheckbox [value]="account"></p-tableCheckbox>
+            </td>
+            <td class="col-name">{{ account.name }}</td>
+            <td class="col-email">{{ account.email }}</td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="3" class="text-center">No accounts registered yet.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+
+    <div class="action-bar">
+      <p-button 
+        routerLink="/" 
+        label="Back to Register" 
+        icon="pi pi-arrow-left" 
+        severity="secondary">
+      </p-button>
+      <div class="action-buttons-right">
+        <p-button 
+          (click)="deleteSelected()" 
+          label="Delete Selected" 
+          icon="pi pi-trash" 
+          severity="danger"
+          [disabled]="selectedAccounts().length === 0">
+        </p-button>
+        <p-button 
+          (click)="loadAccounts()" 
+          label="Refresh" 
+          icon="pi pi-sync" 
+          [loading]="loading()">
+        </p-button>
+      </div>
+    </div>
+  </p-card>
+</div>
