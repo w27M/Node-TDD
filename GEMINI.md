@@ -1,138 +1,138 @@
 # 🧠 Gemini Instructions: CLEAN-NODE-API
 
-Bem-vindo! Este espaço de trabalho contém um monorepo full-stack apresentando um **Backend Node.js** construído com os princípios de Clean Architecture/SOLID e um **Frontend Angular** moderno e desacoplado. Este documento serve como blueprint arquitetural, guia técnico e referência operacional para sessões de desenvolvimento com assistentes de IA (como Gemini CLI) neste projeto.
+Welcome! This workspace contains a full-stack monorepo featuring a highly decoupled, Clean Architecture/SOLID **Node.js Backend** and a modern **Angular Frontend**. This document serves as the architectural blueprint and operational reference for Gemini CLI sessions in this workspace.
 
 ---
 
-## 📂 Visão Geral do Projeto e Estrutura de Diretórios
+## 📂 Project Overview & Directory Structure
 
-A estrutura de arquivos garante um isolamento estrito de responsabilidades:
+The project structure guarantees strict isolation of concerns:
 
 ```text
 /CLEAN-NODE-API
-├── frontend/               # Aplicação Frontend em Angular (PrimeNG + Vitest)
-├── src/                    # Backend Clean Node API (TypeScript + Jest)
-│   ├── data/               # Implementações de casos de uso de negócios (interage com protocolos)
-│   │   ├── protocols/      # Interfaces e contratos de Repositórios e Helpers
-│   │   └── usecases/       # Implementações das interfaces de caso de uso do Domínio
-│   ├── domain/             # Regras de negócios corporativas puras (sem dependências externas)
-│   │   ├── models/         # Estruturas de dados / Entidades (ex: AccountModel)
-│   │   └── usecases/       # Contratos de negócios do Domínio (ex: AddAccount, Authentication)
-│   ├── infra/              # Adaptadores de ferramentas e frameworks externos (Banco de dados, Criptografia)
-│   │   ├── criptography/   # Adaptadores de criptografia (Bcrypt)
-│   │   └── db/             # Conexões e ajudantes de banco de dados (MongoDB, MySQL)
-│   ├── main/               # Raiz de Composição / Composition Root (Inicialização do Framework, Rotas, Fábricas)
-│   │   ├── adapters/       # Adaptadores de rotas e middlewares do Express
-│   │   ├── config/         # Configurações de carregamento de rotas e middlewares
-│   │   ├── decorators/     # Decoradores de log (Tratamento transversal de erros)
-│   │   ├── factories/      # Instanciação de controladores/casos de uso e injeção de dependências
-│   │   └── routes/         # Configuração de endpoints do Express
-│   ├── presentation/       # Camada HTTP/Controlador (Validações, Respostas, Formatação)
-│   │   ├── controllers/    # Manipuladores de requisição (SignUp, Login, DeleteAccount, ListAccounts)
-│   │   └── protocols/      # Contratos de controladores e validações
-│   └── utils/              # Adaptadores de utilitários genéricos (ex: EmailValidator)
-├── tests/                  # Suítes de testes unitários e integração colocalizados com a fonte
-└── env.ts                  # Configurações de ambiente do Backend
+├── frontend/               # Angular Frontend Application (PrimeNG + Vitest)
+├── src/                    # Clean Node API Backend (TypeScript + Jest)
+│   ├── data/               # Business usecase implementations (interacts with protocols)
+│   │   ├── protocols/      # Repository and helper interfaces/contracts
+│   │   └── usecases/       # Implementations of Domain interfaces
+│   ├── domain/             # Enterprise business rules (no external dependencies)
+│   │   ├── models/         # Data structures/entities (e.g., AccountModel)
+│   │   └── usecases/       # Domain business contracts (e.g., AddAccount, Authentication)
+│   ├── infra/              # External frameworks & tools adapters (DB, Cryptography)
+│   │   ├── criptography/   # Encryption adapters (Bcrypt)
+│   │   └── db/             # Database drivers & helpers (MongoDB, MySQL)
+│   ├── main/               # Composition Root (Framework setup, Routing, Factories)
+│   │   ├── adapters/       # Express route & middleware adapters
+│   │   ├── config/         # Middleware & route loader setups
+│   │   ├── decorators/     # Log decorators (Cross-cutting concerns)
+│   │   ├── factories/      # Controllers and Use Cases instantiation & injection
+│   │   └── routes/         # Express endpoints configuration
+│   ├── presentation/       # HTTP/Controller layer (Validations, Responses, Formatting)
+│   │   ├── controllers/    # Request handlers (SignUp, Login, DeleteAccount, ListAccounts)
+│   │   └── protocols/      # Controller & validation contracts
+│   └── utils/              # Generic utility adapters (e.g., EmailValidator)
+├── tests/                  # Unit and integration test suites colocated with source structures
+└── env.ts                  # Backend environment configuration
 ```
 
 ---
 
-## 🛠️ Stack Tecnológica
+## 🛠️ Technology Stack
 
 ### Backend
 - **Core:** Node.js, TypeScript (v5.x), Express (v5.x), dotenv
-- **Desenvolvimento:** Nodemon, Sucrase (para execução local instantânea sem necessidade de compilar previamente com `tsc`)
-- **Adaptadores de Banco de Dados:** 
-  - **MongoDB:** Conectividade NoSQL de alta performance.
-  - **MySQL 8.0:** Implementado de forma transparente via `mysql2/promise` para gerenciar tabelas relacionais em conjunto com o paradigma Clean.
-- **Testes:** Jest (v30.x) configurado individualmente para suítes unitárias e de integração (`@shelf/jest-mongodb` para banco Mongo em memória).
+- **Development Tools:** Nodemon, Sucrase (for fast local execution without pre-compiling)
+- **Database Adapters:** 
+  - **MongoDB:** High-performance NoSQL connectivity.
+  - **MySQL 8.0:** Seamlessly integrated via `mysql2/promise` to handle relational schemas transparently under the Clean paradigm.
+- **Testing:** Jest (v30.x) with custom unit and integration configurations, `@shelf/jest-mongodb` for Mongo memory server.
 
 ### Frontend
 - **Core:** Angular (v22.x)
-- **UI & Design:** PrimeNG, PrimeIcons, Vanilla CSS/SCSS
-- **Testes:** Vitest (v4.x), JSDOM
-- **Build:** Angular CLI (`@angular/build`)
+- **UI & Styling:** PrimeNG, PrimeIcons, Vanilla CSS/SCSS
+- **Testing:** Vitest (v4.x), JSDOM
+- **Build System:** Angular CLI (`@angular/build`)
 
-### Infraestrutura & Docker
-- **Docker Compose:** Orquestra um container com o banco de dados **MySQL 8.0** e outro com a própria API Node.
-- **Automatização de Tabelas (`init.sql`):** Configurado como volume do MySQL no caminho `/docker-entrypoint-initdb.d/init.sql`, garantindo que o banco de dados `clean_node_api` e as tabelas `accounts` e `errors` sejam provisionados na primeira inicialização do container.
+### Infrastructure & DevOps
+- **Docker Compose:** Orchestrates a container running **MySQL 8.0** and another running the Node API.
+- **Table Provisioning (`init.sql`):** Mounted as a volume in MySQL at `/docker-entrypoint-initdb.d/init.sql`, ensuring that the `clean_node_api` database and its `accounts` and `errors` tables are automatically created on the first container startup.
 
 ---
 
-## 🏃 Como Construir e Executar
+## 🏃 Building and Running
 
-### Utilizando o Docker Compose (Fluxo Simplificado)
+### Using Docker Compose (Simplified Workflow)
 
-Para levantar o banco de dados MySQL e a aplicação Node integrada automaticamente com as tabelas criadas:
+To start the MySQL database and the Node application together with pre-configured tables:
 ```bash
 docker compose up --build
 ```
-Isso expõe:
-- A API Node na porta **5050** (`http://localhost:5050`)
-- O MySQL na porta local **3307** (`localhost:3307`, usuário `root`, senha `password`, banco `clean_node_api`)
+This exposes:
+- The Node API on port **5050** (`http://localhost:5050`)
+- MySQL on local port **3307** (`localhost:3307`, user `root`, password `password`, database `clean_node_api`)
 
-Para desligar os containers e liberar recursos:
+To stop the containers and release system resources:
 ```bash
 docker compose down
 ```
-Se precisar recriar as tabelas limpando os dados persistidos:
+To wipe persistency and recreate tables from scratch:
 ```bash
 docker compose down -v
 ```
 
-### Desenvolvimento Local Individual
+### Local Development Flow
 
 #### 1. Backend
-O backend consome configurações do arquivo `env.ts`.
-Para instalar as dependências e iniciar o servidor com auto-reload (Nodemon + Sucrase):
+The backend uses configurations from `env.ts`.
+To install dependencies and start the local development server with auto-reload (Nodemon + Sucrase):
 ```bash
 npm install
 npm run dev
 ```
 
 #### 2. Frontend
-Navegue para o diretório do frontend, instale as dependências e inicie o servidor do Angular:
+Navigate to the frontend folder, install dependencies, and start the Angular server:
 ```bash
 cd frontend
 npm install
 npm start
 ```
-O frontend estará acessível em `http://localhost:4200`.
+The frontend is available at `http://localhost:4200`.
 
 ---
 
-## 🧪 Diretrizes de Teste (TDD)
+## 🧪 Testing Guidelines
 
-Os testes são a espinha dorsal deste projeto, seguindo o fluxo de **Desenvolvimento Orientado a Testes (TDD)** e isolamento absoluto.
+Testing is a core pillar of this codebase, adhering strictly to **TDD (Test-Driven Development)** and separation of concerns.
 
-### Comandos de Teste do Backend (Jest)
+### Backend Testing Commands (Jest)
 
-Todos os testes do backend estão centralizados dentro de `src/tests`.
+All backend tests are configured via Jest and located inside `src/tests`.
 
-- **Executar todos os testes:**
+- **Run all tests (quiet, in-band):**
   ```bash
   npm test
   ```
-- **Executar apenas testes unitários (Modo de observação / Watch):**
+- **Run unit tests only (watch mode):**
   ```bash
   npm run test:unit
   ```
-- **Executar apenas testes de integração (Watch):**
+- **Run integration tests only (watch mode):**
   ```bash
   npm run test:integration
   ```
-- **Executar testes em modo de verificação de pré-commit (Staged):**
+- **Run staged tests (for pre-commit checks):**
   ```bash
   npm run test:staged
   ```
-- **Executar testes em CI com relatórios de cobertura:**
+- **Run CI tests (with coverage reports):**
   ```bash
   npm run test:ci
   ```
 
-### Comandos de Teste do Frontend (Vitest)
+### Frontend Testing Commands (Vitest)
 
-No diretório do frontend:
+In the frontend directory:
 ```bash
 cd frontend
 npm test
@@ -140,23 +140,23 @@ npm test
 
 ---
 
-## 📐 Convenções Arquiteturais e Regras de Código
+## 📐 Architectural Conventions & Coding Rules
 
-Ao propor ou implementar alterações no código, siga rigorosamente estas regras:
+When contributing to this workspace, adhere strictly to the following Clean Architecture guidelines:
 
-1. **Regra de Dependência Estrita:**
-   - **Camada de Domínio (Domain):** ZERO dependências externas (sem express, sem mysql, sem bibliotecas de terceiros). Declara apenas entidades e assinaturas de contratos de casos de uso.
-   - **Camada de Dados (Data):** Depende apenas do Domínio e de protocolos abstratos de infraestrutura (ex: `AddAccountRepository`). Nunca se acopla a Express ou drivers específicos.
-   - **Camada de Apresentação (Presentation):** Depende estritamente de interfaces de controle e de casos de uso do Domínio. É 100% agnóstica de frameworks web (pode ser usada com Express, Fastify ou CLI).
-   - **Camada de Infraestrutura (Infrastructure):** Onde os pacotes externos, drivers e adaptadores reais de banco de dados (MySQL, MongoDB) e criptografia são injetados de forma isolada.
-   - **Camada Principal (Main):** Apenas esta camada (Compositon Root) pode acoplar tudo, utilizando *Factories* para criar as instâncias e injetá-las.
+1. **Strict Dependency Rule:**
+   - **Domain Layer** has ZERO external dependencies (no express, no mysql, no packages). It defines only data interfaces and usecase declarations.
+   - **Data Layer** depends on domain interfaces and generic protocols (like `AddAccountRepository`). It does NOT depend on express, mysql, or mongodb.
+   - **Presentation Layer** depends only on domain use cases and controller protocols. It is agnostic to the HTTP server framework (Express/Fastify).
+   - **Infrastructure Layer** implements the protocols defined in the `data` and `presentation` layers. This is where MongoDB, MySQL, Bcrypt, and third-party validators are used.
+   - **Main Layer** is the ONLY layer allowed to couple everything together. It instantiates adapters, configurations, routes, and controllers using Factories.
 
-2. **Segregação de Interfaces e Inversão de Dependência:**
-   - Nunca instancie classes diretamente dentro de outras (exceto helpers leves ou objetos de valor). 
-   - Sempre utilize injeção de dependência pelo construtor baseando-se em interfaces de protocolo.
+2. **Interface Segregation & Dependency Inversion:**
+   - Never instantiate classes directly within other classes (except for helpers or simple value objects).
+   - Always inject dependencies via constructors using interfaces/protocols.
 
-3. **Tipagem Forte e Completa:**
-   - Nunca utilize casts evasivos como `as any`, comentários de supressão `// @ts-ignore` ou desabilite regras do compilador. Mantenha tipagem expressiva e segura.
+3. **No Hidden Logic / Suppressed Types:**
+   - Rigorously adhere to full type safety. Avoid casts like `as any`, and do not disable TypeScript warnings or use `// @ts-ignore`.
 
-4. **Tratamento Transversal de Erros:**
-   - Utilize Decoradores (como `LogControllerDecorator`) para envelopar controladores e processar logs de erro de forma centralizada e limpa, em vez de poluir os controladores individuais com código de rastreamento.
+4. **Cross-Cutting Concerns:**
+   - Prefer explicit composition (e.g., decorating controllers with a `LogControllerDecorator` rather than writing middleware directly in the controller) to handle cross-cutting concerns like error logging.

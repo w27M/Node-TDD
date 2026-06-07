@@ -9,20 +9,20 @@
 [![Jest](https://img.shields.io/badge/Tests-Jest-red?logo=jest)](https://jestjs.io/)
 [![Vitest](https://img.shields.io/badge/Tests-Vitest-yellow?logo=vitest)](https://vitest.dev/)
 
-Este é um projeto full-stack monorepo composto por um **Backend em Node.js (TypeScript)** robusto e altamente desacoplado que segue os princípios de **Clean Architecture** e **SOLID**, e um **Frontend em Angular (v22)** com uma interface moderna construída usando **PrimeNG**.
+This is a full-stack monorepo project featuring a highly decoupled, robust **Node.js Backend (TypeScript)** built using **Clean Architecture** and **SOLID** principles, and a modern **Angular Frontend (v22)** styled with **PrimeNG**.
 
 ---
 
-## 📂 Visão Geral e Como a Aplicação Funciona
+## 📂 Overview & How the Application Works
 
-A aplicação é projetada sob o princípio da **independência de frameworks e bancos de dados**. Ela adota a **Clean Architecture**, onde o domínio de negócios (regras de negócio corporativas) fica isolado no centro, e as tecnologias externas (bancos de dados, frameworks web, bibliotecas de criptografia) são empurradas para as bordas.
+The application is built on the core principle of **framework and database independence**. It adopts **Clean Architecture**, where the business domain (enterprise business rules) is kept isolated at the center, and external technologies (databases, web frameworks, encryption libraries) are pushed to the outer edges.
 
-### 📐 Arquitetura do Backend
+### 📐 Backend Architecture
 
-O fluxo de dados segue uma linha unidirecional de fora para dentro, garantindo que as regras de negócio nunca dependam de detalhes de implementação:
+Data flow follows a unidirectional path from the outside in, ensuring that business rules never depend on implementation details:
 
 ```text
-[Cliente / Frontend]
+[Client / Frontend]
          │
          ▼
 [Express Router (Main)] ───► [Express Routes Adapter]
@@ -44,137 +44,136 @@ O fluxo de dados segue uma linha unidirecional de fora para dentro, garantindo q
         (Bcrypt / Crypto)                       (MySQL Database)
 ```
 
-1. **Camada de Domínio (Domain):** Contém as entidades de negócio (`AccountModel`) e as definições abstratas dos casos de uso (`AddAccount`). Não possui nenhuma dependência de bibliotecas externas.
-2. **Camada de Dados (Data):** Implementa os casos de uso definidos no Domínio. Ela gerencia o fluxo de dados (ex: busca a senha, criptografa e envia para salvar) usando contratos/protocolos de repositório (`AddAccountRepository`).
-3. **Camada de Apresentação (Presentation):** Contém os Controllers responsáveis por lidar com requisições e respostas HTTP de forma genérica (independente de framework web).
-4. **Camada de Infraestrutura (Infrastructure):** Onde estão as implementações concretas e acopladas a frameworks/bancos específicos. Aqui temos o adaptador do **Bcrypt** para criptografia, o driver do **MongoDB** e o helper/repositório do **MySQL**.
-5. **Camada Principal (Main):** O *Composition Root* (ponto de entrada) da aplicação. É a única camada que conhece todas as outras. Ela carrega as configurações, adapta o Express para usar nossos controladores genéricos e instancia as classes injetando as dependências corretas usando fábricas (*Factories*).
+1. **Domain Layer:** Contains business entities (`AccountModel`) and abstract usecase interfaces (`AddAccount`). It has absolutely zero external library dependencies.
+2. **Data Layer:** Implements the usecases defined in the Domain layer. It orchestrates the flow of data (e.g., fetching a password, hashing it, and sending it to be saved) using repository contracts/protocols (`AddAccountRepository`).
+3. **Presentation Layer:** Contains controllers responsible for handling HTTP requests and responses in a generic, framework-agnostic way.
+4. **Infrastructure Layer:** Contains concrete implementations tightly coupled to specific frameworks or databases. This is where the **Bcrypt** cryptography adapter, the **MongoDB** driver, and the **MySQL** helper/repository reside.
+5. **Main Layer:** The *Composition Root* of the application. It is the only layer aware of all other layers. It loads configurations, adapts Express to use our generic controllers, and instantiates classes while injecting the correct dependencies using factories.
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## 🛠️ Technologies Used
 
 ### Backend
 *   **Core:** Node.js, TypeScript (v5.x), Express (v5.x)
-*   **Bancos de Dados:** 
-    *   **MySQL 8.0:** Utilizado via `mysql2/promise` para queries rápidas e eficientes com suporte a Promises.
-    *   **MongoDB:** Driver nativo para suporte a armazenamento NoSQL.
-*   **Ferramentas de Desenvolvimento:** 
-    *   **Nodemon & Sucrase:** Permite execução direta de arquivos TypeScript em tempo real sem a lentidão do processo de compilação tradicional (`tsc`).
-*   **Testes:** 
-    *   **Jest (v30.x):** Suíte de testes unitários e de integração extremamente rápida.
-    *   `@shelf/jest-mongodb` para testes de integração com banco de dados em memória.
+*   **Databases:** 
+    *   **MySQL 8.0:** Used via `mysql2/promise` for fast, efficient query handling with Promise support.
+    *   **MongoDB:** Native driver for NoSQL document storage.
+*   **Development Tools:** 
+    *   **Nodemon & Sucrase:** Enables running TypeScript files directly in real-time without the overhead of traditional compilation (`tsc`).
+*   **Testing:** 
+    *   **Jest (v30.x):** Fast unit and integration testing suite.
+    *   `@shelf/jest-mongodb` for in-memory Mongo integration tests.
 
 ### Frontend
-*   **Core:** Angular (v22.x) com TypeScript
-*   **Visual e Componentes:** PrimeNG (temas modernos e componentes prontos de alta qualidade), PrimeIcons
-*   **Estilização:** Vanilla CSS/SCSS (estilização direta e organizada, livre de classes utilitárias complexas)
-*   **Testes:** Vitest (v4.x) e JSDOM
+*   **Core:** Angular (v22.x) with TypeScript
+*   **UI & Components:** PrimeNG (high-quality pre-built UI components and modern themes), PrimeIcons
+*   **Styling:** Vanilla CSS/SCSS (straightforward, structured, utility-class-free custom styling)
+*   **Testing:** Vitest (v4.x) and JSDOM
 
-### Infraestrutura & DevOps
-*   **Docker & Docker Compose:** Containerização completa da aplicação e do banco de dados MySQL.
-*   **Script de Inicialização SQL (`init.sql`):** Automatiza a criação do banco de dados `clean_node_api` e de todas as tabelas necessárias (`accounts` e `errors`) assim que o banco é iniciado pela primeira vez.
-
----
-
-## 🚀 Como Instalar e Executar
-
-### Pré-requisitos
-Certifique-se de ter instalado em sua máquina:
-1.  **Docker Desktop** (com suporte ao comando `docker compose`)
-2.  **Node.js (v20+)** e **npm** (caso queira rodar localmente fora do Docker)
+### Infrastructure & DevOps
+*   **Docker & Docker Compose:** Complete containerization of the application and the MySQL database.
+*   **Database Initializer (`init.sql`):** Mounted as a volume in MySQL at `/docker-entrypoint-initdb.d/init.sql` to automate database provisioning and schema creation (`accounts` and `errors` tables) on the first container startup.
 
 ---
 
-### Método 1: Execução Completa via Docker Compose (Recomendado)
+## 🚀 Installation & Running
 
-Este método levanta a aplicação Node e o banco de dados MySQL de forma totalmente isolada e automática, executando o script `init.sql` na primeira subida.
+### Prerequisites
+Make sure you have the following installed:
+1.  **Docker Desktop** (with `docker compose` support)
+2.  **Node.js (v20+)** and **npm** (if you want to run the project locally outside Docker)
 
-1.  Abra o terminal na pasta raiz do projeto:
+---
+
+### Method 1: Full Execution with Docker Compose (Recommended)
+
+This method sets up both the Node application and the MySQL database in an isolated and automated way, running the `init.sql` script on the first launch.
+
+1.  Open your terminal in the root directory:
     ```bash
     /Users/marcossilva/Documents/Udemy/Node/CLEAN-NODE-API
     ```
-2.  Inicie os containers:
+2.  Start the containers:
     ```bash
     docker compose up --build
     ```
-3.  O Docker irá:
-    *   Baixar e iniciar o MySQL 8.0 na porta local **3307**.
-    *   Rodar o script `init.sql` para criar a tabela de usuários (`accounts`) e logs (`errors`).
-    *   Compilar e iniciar a API do Node.js na porta **5050**.
-4.  Para desligar os containers e liberar a memória do seu Mac:
+3.  Docker will:
+    *   Download and start MySQL 8.0 on local port **3307**.
+    *   Run the `init.sql` script to create the `accounts` and `errors` tables.
+    *   Build and launch the Node.js API on port **5050**.
+4.  To stop the containers and free up memory on your Mac:
     ```bash
     docker compose down
     ```
-    *Dica: Se quiser apagar os dados do banco para recriar as tabelas do zero usando o `init.sql`, use `docker compose down -v`.*
+    *Tip: To wipe the database and recreate tables from scratch using `init.sql`, run `docker compose down -v`.*
 
 ---
 
-### Método 2: Execução Local (Para Desenvolvimento Ativo)
+### Method 2: Local Execution (For Active Development)
 
-Para desenvolver de forma ágil, você pode rodar os serviços individualmente.
+For a fast feedback loop, you can run services individually.
 
-#### Passo 1: Iniciar apenas o Banco de Dados (Docker)
-Inicie apenas o serviço do MySQL para que o backend local possa se conectar:
+#### Step 1: Start Only the Database (Docker)
+Start only the MySQL service so your local backend can connect:
 ```bash
-docker compose up -g mysql
-# ou simplesmente iniciar o container mysql individualmente
+docker compose up -d mysql
 ```
 
-#### Passo 2: Executar o Backend Node.js
-1.  Na raiz do projeto, instale as dependências:
+#### Step 2: Run the Node.js Backend
+1.  In the root folder, install the backend dependencies:
     ```bash
     npm install
     ```
-2.  Inicie a API em modo de desenvolvimento (com auto-reload):
+2.  Start the API in development mode (with auto-reload):
     ```bash
     npm run dev
     ```
-3.  A API estará rodando em `http://localhost:5050`.
+3.  The API will be available at `http://localhost:5050`.
 
-#### Passo 3: Executar o Frontend Angular
-1.  Navegue até a pasta do frontend:
+#### Step 3: Run the Angular Frontend
+1.  Navigate to the frontend directory:
     ```bash
     cd frontend
     ```
-2.  Instale as dependências do Angular:
+2.  Install frontend dependencies:
     ```bash
     npm install
     ```
-3.  Inicie o servidor de desenvolvimento:
+3.  Start the development server:
     ```bash
     npm start
     ```
-4.  O seu frontend abrirá automaticamente em `http://localhost:4200`.
+4.  Your frontend will automatically open at `http://localhost:4200`.
 
 ---
 
-## 🧪 Como Executar os Testes
+## 🧪 Running Tests
 
-A qualidade do código é mantida através de uma cobertura de testes rigorosa (TDD).
+Code quality is enforced through a strict test suite following TDD.
 
-### Testes do Backend (Jest)
-Rode os seguintes comandos na pasta raiz:
-*   **Executar todos os testes:**
+### Backend Tests (Jest)
+Run these commands in the root directory:
+*   **Run all tests:**
     ```bash
     npm test
     ```
-*   **Testes Unitários em tempo real (Watch Mode):**
+*   **Unit Tests (Watch Mode):**
     ```bash
     npm run test:unit
     ```
-*   **Testes de Integração (Banco de dados e Rotas Express):**
+*   **Integration Tests (Database and Express Routes):**
     ```bash
     npm run test:integration
     ```
-*   **Testes com Relatório de Cobertura (CI):**
+*   **CI Tests with Coverage Report:**
     ```bash
     npm run test:ci
     ```
 
-### Testes do Frontend (Vitest)
-Rode na pasta `frontend/`:
-*   **Executar testes do Angular:**
+### Frontend Tests (Vitest)
+Run inside the `frontend/` folder:
+*   **Run Angular unit/component tests:**
     ```bash
     npm test
     ```
