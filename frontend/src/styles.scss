@@ -10,3 +10,93 @@ body {
   color: $fb-text-black;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
+
+/* Customizing Success and Error Toasts globally */
+.p-toast-message-success {
+  background-color: $toast-success-bg !important; /* Soft light green background */
+  border: 1px solid $toast-success-border !important;
+  border-radius: 6px !important;
+}
+
+.p-toast-message-success,
+.p-toast-message-success .p-toast-message-content,
+.p-toast-message-success .p-toast-message-text,
+.p-toast-message-success .p-toast-summary,
+.p-toast-message-success .p-toast-message-summary,
+.p-toast-message-success .p-toast-detail,
+.p-toast-message-success .p-toast-message-detail,
+.p-toast-message-success .p-toast-message-icon,
+.p-toast-message-success .p-toast-close-icon,
+.p-toast-message-success * {
+  --p-toast-success-summary-color: #{$toast-success-text} !important;
+  --p-toast-success-detail-color: #{$toast-success-text} !important;
+  --p-toast-success-icon-color: #{$toast-success-text} !important;
+  --p-toast-success-close-icon-color: #{$toast-success-text} !important;
+  --p-toast-summary-color: #{$toast-success-text} !important;
+  --p-toast-detail-color: #{$toast-success-text} !important;
+  --p-toast-icon-color: #{$toast-success-text} !important;
+  --p-toast-close-icon-color: #{$toast-success-text} !important;
+  --p-toast-message-success-summary-color: #{$toast-success-text} !important;
+  --p-toast-message-success-detail-color: #{$toast-success-text} !important;
+  --p-toast-message-success-icon-color: #{$toast-success-text} !important;
+  --p-toast-message-success-close-icon-color: #{$toast-success-text} !important;
+  color: $toast-success-text !important; /* Force dark green color on absolutely all elements/texts inside success toast */
+}
+
+.p-toast-message-success .p-toast-summary,
+.p-toast-message-success .p-toast-message-summary {
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  color: $toast-success-text !important;
+}
+
+.p-toast-message-success .p-toast-detail,
+.p-toast-message-success .p-toast-message-detail {
+  font-size: 14px !important;
+  color: $toast-success-text !important;
+}
+
+/* Customizing PrimeNG Error Toast globally (Light Red, Dark Red Text) */
+.p-toast-message-error {
+  background-color: $toast-error-bg !important; /* Soft light red background */
+  border: 1px solid $toast-error-border !important;
+  border-radius: 6px !important;
+}
+
+.p-toast-message-error,
+.p-toast-message-error .p-toast-message-content,
+.p-toast-message-error .p-toast-message-text,
+.p-toast-message-error .p-toast-summary,
+.p-toast-message-error .p-toast-message-summary,
+.p-toast-message-error .p-toast-detail,
+.p-toast-message-error .p-toast-message-detail,
+.p-toast-message-error .p-toast-message-icon,
+.p-toast-message-error .p-toast-close-icon,
+.p-toast-message-error * {
+  --p-toast-error-summary-color: #{$toast-error-text} !important;
+  --p-toast-error-detail-color: #{$toast-error-text} !important;
+  --p-toast-error-icon-color: #{$toast-error-text} !important;
+  --p-toast-error-close-icon-color: #{$toast-error-text} !important;
+  --p-toast-summary-color: #{$toast-error-text} !important;
+  --p-toast-detail-color: #{$toast-error-text} !important;
+  --p-toast-icon-color: #{$toast-error-text} !important;
+  --p-toast-close-icon-color: #{$toast-error-text} !important;
+  --p-toast-message-error-summary-color: #{$toast-error-text} !important;
+  --p-toast-message-error-detail-color: #{$toast-error-text} !important;
+  --p-toast-message-error-icon-color: #{$toast-error-text} !important;
+  --p-toast-message-error-close-icon-color: #{$toast-error-text} !important;
+  color: $toast-error-text !important; /* Force dark red color on absolutely all elements/texts inside error toast */
+}
+
+.p-toast-message-error .p-toast-summary,
+.p-toast-message-error .p-toast-message-summary {
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  color: $toast-error-text !important;
+}
+
+.p-toast-message-error .p-toast-detail,
+.p-toast-message-error .p-toast-message-detail {
+  font-size: 14px !important;
+  color: $toast-error-text !important;
+}

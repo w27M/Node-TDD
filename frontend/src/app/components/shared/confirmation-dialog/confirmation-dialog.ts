@@ -8,8 +8,8 @@ import { Component, input, output } from '@angular/core';
 })
 export class ConfirmationDialogComponent {
   show = input<boolean>(false);
-  title = input<string>('Confirmação');
-  message = input<string>('Todas as informacoes serao perdidas, deseja continuar?');
+  title = input<string>('Confirmation');
+  message = input<string>('All information will be lost, do you want to continue?');
   backLabel = input<string>('back');
   nextLabel = input<string>('next');
 

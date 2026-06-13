@@ -57,6 +57,14 @@
   font-weight: 600;
 }
 
+.validation-error {
+  color: #fa3e3e; /* Facebook Soft warning red */
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: -2px;
+  display: block;
+}
+
 .input-wrapper input {
   width: 100%;
   padding: 14px 16px; /* Facebook login input padding */
@@ -148,74 +156,4 @@
 @keyframes rotation {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
-}
-
-/* Customizing Success and Error Toasts for the Signup Component */
-::ng-deep .p-toast-message-success {
-  background-color: $toast-success-bg !important; /* Soft light green background */
-  border: 1px solid $toast-success-border !important;
-  border-radius: 6px !important;
-}
-
-::ng-deep .p-toast-message-success,
-::ng-deep .p-toast-message-success .p-toast-message-content,
-::ng-deep .p-toast-message-success .p-toast-message-text,
-::ng-deep .p-toast-message-success .p-toast-summary,
-::ng-deep .p-toast-message-success .p-toast-detail,
-::ng-deep .p-toast-message-success .p-toast-message-icon,
-::ng-deep .p-toast-message-success .p-toast-close-icon,
-::ng-deep .p-toast-message-success * {
-  --p-toast-success-summary-color: #{$toast-success-text} !important;
-  --p-toast-success-detail-color: #{$toast-success-text} !important;
-  --p-toast-success-icon-color: #{$toast-success-text} !important;
-  --p-toast-success-close-icon-color: #{$toast-success-text} !important;
-  --p-toast-summary-color: #{$toast-success-text} !important;
-  --p-toast-detail-color: #{$toast-success-text} !important;
-  --p-toast-icon-color: #{$toast-success-text} !important;
-  --p-toast-close-icon-color: #{$toast-success-text} !important;
-  color: $toast-success-text !important; /* Force dark green color on absolutely all elements/texts inside success toast */
-}
-
-::ng-deep .p-toast-message-success .p-toast-summary {
-  font-weight: 700 !important;
-  font-size: 15px !important;
-}
-
-::ng-deep .p-toast-message-success .p-toast-detail {
-  font-size: 14px !important;
-}
-
-/* Customizing PrimeNG Error Toast (Light Red, Dark Red Text) */
-::ng-deep .p-toast-message-error {
-  background-color: $toast-error-bg !important; /* Soft light red background */
-  border: 1px solid $toast-error-border !important;
-  border-radius: 6px !important;
-}
-
-::ng-deep .p-toast-message-error,
-::ng-deep .p-toast-message-error .p-toast-message-content,
-::ng-deep .p-toast-message-error .p-toast-message-text,
-::ng-deep .p-toast-message-error .p-toast-summary,
-::ng-deep .p-toast-message-error .p-toast-detail,
-::ng-deep .p-toast-message-error .p-toast-message-icon,
-::ng-deep .p-toast-message-error .p-toast-close-icon,
-::ng-deep .p-toast-message-error * {
-  --p-toast-error-summary-color: #{$toast-error-text} !important;
-  --p-toast-error-detail-color: #{$toast-error-text} !important;
-  --p-toast-error-icon-color: #{$toast-error-text} !important;
-  --p-toast-error-close-icon-color: #{$toast-error-text} !important;
-  --p-toast-summary-color: #{$toast-error-text} !important;
-  --p-toast-detail-color: #{$toast-error-text} !important;
-  --p-toast-icon-color: #{$toast-error-text} !important;
-  --p-toast-close-icon-color: #{$toast-error-text} !important;
-  color: $toast-error-text !important; /* Force dark red color on absolutely all elements/texts inside error toast */
-}
-
-::ng-deep .p-toast-message-error .p-toast-summary {
-  font-weight: 700 !important;
-  font-size: 15px !important;
-}
-
-::ng-deep .p-toast-message-error .p-toast-detail {
-  font-size: 14px !important;
 }

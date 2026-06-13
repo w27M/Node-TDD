@@ -33,7 +33,7 @@ export class SignUpComponent {
 
   // Form Validation & Modification States
   protected isFormValid = computed(() => {
-    return this.name().trim() !== '' &&
+    return this.name().trim().length >= 4 &&
            this.email().trim() !== '' &&
            this.password().trim() !== '' &&
            this.passwordConfirmation().trim() !== '';
@@ -140,6 +140,16 @@ export class SignUpComponent {
         severity: 'error',
         summary: 'Error',
         detail: 'All fields are required.',
+        life: 4000
+      });
+      return;
+    }
+
+    if (nameVal.trim().length < 4) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Name must be at least 4 characters long.',
         life: 4000
       });
       return;
