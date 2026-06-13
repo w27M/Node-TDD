@@ -1,0 +1,90 @@
+/* Custom Discard Changes Dialog Modal Overlay */
+.dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.dialog-box {
+  background-color: #ffffff;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 440px;
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 16px 24px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  animation: dialogFadeIn 0.18s ease-out;
+}
+
+@keyframes dialogFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.dialog-box h3 {
+  margin-top: 0;
+  color: #1c1e21;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.dialog-box p {
+  color: #606770;
+  font-size: 15px;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+}
+
+.btn-dialog-back {
+  padding: 12px 24px;
+  border: 1px solid #ccd0d5;
+  border-radius: 6px;
+  background-color: #f5f6f7;
+  color: #4b4f56;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.12s ease;
+  min-width: 100px;
+}
+
+.btn-dialog-back:hover {
+  background-color: #ebedf0;
+}
+
+.btn-dialog-next {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  background-color: #fa3e3e;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.12s ease;
+  min-width: 100px;
+}
+
+.btn-dialog-next:hover {
+  background-color: #e02424;
+}

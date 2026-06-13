@@ -1,7 +1,6 @@
 import { Component, inject, OnInit, signal, DestroyRef } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { SignUpResponse } from '../../services/component.service';
-import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { ToastModule } from 'primeng/toast';
@@ -11,11 +10,12 @@ import { Actions, ofType } from '@ngrx/effects';
 import * as AccountsActions from '../../store/accounts.actions';
 import { selectAllAccounts, selectAccountsLoading, selectAccountsActionLoading } from '../../store/accounts.selectors';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { AccountTableComponent } from '../shared/account-table/account-table';
 
 @Component({
   selector: 'app-account-list',
   standalone: true,
-  imports: [RouterLink, TableModule, ButtonModule, CardModule, ToastModule],
+  imports: [RouterLink, ButtonModule, CardModule, ToastModule, AccountTableComponent],
   providers: [MessageService],
   templateUrl: './account-list.html',
   styleUrl: './account-list.scss'

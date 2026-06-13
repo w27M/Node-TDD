@@ -1,0 +1,12 @@
+@if (show()) {
+  <div class="dialog-overlay">
+    <div class="dialog-box">
+      <h3>{{ title() }}</h3>
+      <p>{{ message() }}</p>
+      <div class="dialog-actions">
+        <button type="button" (click)="onBack()" class="btn-dialog-back">{{ backLabel() }}</button>
+        <button type="button" (click)="onNext()" class="btn-dialog-next">{{ nextLabel() }}</button>
+      </div>
+    </div>
+  </div>
+}

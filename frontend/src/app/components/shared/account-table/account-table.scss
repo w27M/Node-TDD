@@ -1,0 +1,182 @@
+@use '../../../../styles/variables' as *;
+
+.table-wrapper {
+  border-radius: 8px;
+  border: 1px solid $fb-border-gray;
+  background-color: #ffffff;
+  overflow: visible !important;
+}
+
+/* Customizing PrimeNG Table for Facebook Theme */
+::ng-deep .p-datatable {
+  background-color: transparent !important;
+  overflow: visible !important;
+}
+
+::ng-deep .p-datatable-table-container {
+  overflow: visible !important;
+}
+
+::ng-deep .p-datatable .p-datatable-thead > tr > th {
+  background-color: $fb-bg-gray !important;
+  color: $fb-text-dark !important;
+  font-weight: 700;
+  border-bottom: 1px solid $fb-border-gray !important;
+  padding: 14px 20px;
+}
+
+::ng-deep .p-datatable .p-datatable-tbody > tr {
+  background-color: #ffffff !important;
+  color: $fb-text-dark !important;
+  transition: background-color 0.15s ease;
+}
+
+::ng-deep .p-datatable .p-datatable-tbody > tr:hover {
+  background-color: $fb-bg-gray !important;
+}
+
+::ng-deep .p-datatable .p-datatable-tbody > tr > td {
+  padding: 14px 20px;
+  border-bottom: 1px solid $fb-border-gray !important;
+}
+
+/* Paginator Container */
+::ng-deep .p-datatable .p-paginator {
+  background-color: $fb-bg-gray !important;
+  color: $fb-text-black !important;
+  border: none !important;
+  border-top: 1px solid $fb-border-gray !important;
+  padding: 8px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  min-height: 56px !important;
+  overflow: visible !important;
+}
+
+::ng-deep .p-paginator .p-paginator-page,
+::ng-deep .p-paginator .p-paginator-next,
+::ng-deep .p-paginator .p-paginator-last,
+::ng-deep .p-paginator .p-paginator-first,
+::ng-deep .p-paginator .p-paginator-prev {
+  color: $fb-text-gray !important;
+}
+
+::ng-deep .p-paginator .p-paginator-page.p-highlight {
+  background-color: $fb-blue !important;
+  color: #ffffff !important;
+}
+
+::ng-deep .p-paginator .p-paginator-rpp-dropdown.p-select {
+  height: 38px !important;
+  min-width: 80px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  background-color: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 6px !important;
+  padding: 4px 12px !important;
+  cursor: pointer !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+}
+
+::ng-deep .p-paginator .p-paginator-rpp-dropdown.p-select:hover {
+  background-color: $fb-bg-gray !important;
+  border-color: #b0b3b8 !important;
+}
+
+::ng-deep .p-paginator .p-paginator-rpp-dropdown .p-select-label {
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: $fb-text-dark !important;
+  padding: 0 !important;
+  line-height: 1 !important;
+  display: flex !important;
+  align-items: center;
+}
+
+::ng-deep .p-paginator .p-paginator-rpp-dropdown .p-select-dropdown {
+  color: $fb-text-gray !important;
+  margin-left: 8px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* PrimeNG Select Overlay panel */
+::ng-deep .p-select-overlay {
+  background-color: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  z-index: 100000 !important;
+}
+
+::ng-deep .p-select-overlay .p-select-option {
+  color: $fb-text-dark !important;
+  padding: 10px 14px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  background-color: #ffffff !important;
+}
+
+::ng-deep .p-select-overlay .p-select-option:hover {
+  background-color: $fb-bg-gray !important;
+}
+
+::ng-deep .p-select-overlay .p-select-option.p-highlight {
+  background-color: $fb-blue !important;
+  color: #ffffff !important;
+}
+
+.col-name {
+  font-weight: 500;
+  color: $fb-text-dark;
+}
+
+.col-email {
+  color: $fb-text-gray;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Customizing Checkboxes */
+::ng-deep .p-checkbox {
+  --p-checkbox-background: #{$checkbox-bg} !important;
+  --p-checkbox-border-color: #{$checkbox-border} !important;
+  --p-checkbox-hover-border-color: #{$checkbox-border-hover} !important;
+
+  --p-checkbox-checked-background: #{$checkbox-bg} !important;
+  --p-checkbox-checked-border-color: #{$checkbox-navy} !important;
+  --p-checkbox-checked-hover-background: #{$checkbox-bg} !important;
+  --p-checkbox-checked-hover-border-color: #{$checkbox-navy-hover} !important;
+
+  --p-checkbox-icon-checked-color: #{$checkbox-navy} !important;
+  --p-checkbox-icon-checked-hover-color: #{$checkbox-navy-hover} !important;
+}
+
+::ng-deep .p-checkbox .p-checkbox-box {
+  background-color: $checkbox-bg !important;
+  border: 1px solid $checkbox-border !important;
+}
+
+::ng-deep .p-checkbox:not(.p-checkbox-disabled):hover .p-checkbox-box {
+  border-color: $checkbox-border-hover !important;
+}
+
+::ng-deep .p-checkbox.p-checkbox-checked .p-checkbox-box,
+::ng-deep .p-checkbox .p-checkbox-box.p-highlight,
+::ng-deep .p-checkbox .p-checkbox-box[data-p-highlight="true"] {
+  background-color: $checkbox-bg !important;
+  border-color: $checkbox-navy !important;
+}
+
+::ng-deep .p-checkbox.p-checkbox-checked:not(.p-checkbox-disabled):hover .p-checkbox-box,
+::ng-deep .p-checkbox:not(.p-checkbox-disabled):hover .p-checkbox-box.p-highlight {
+  background-color: $checkbox-bg !important;
+  border-color: $checkbox-navy-hover !important;
+}

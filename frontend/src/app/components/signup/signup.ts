@@ -9,11 +9,12 @@ import { Actions, ofType } from '@ngrx/effects';
 import * as AccountsActions from '../../store/accounts.actions';
 import { selectAccountsActionLoading } from '../../store/accounts.selectors';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ConfirmationDialogComponent } from '../shared/confirmation-dialog/confirmation-dialog';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [FormsModule, RouterLink, ToastModule],
+  imports: [FormsModule, RouterLink, ToastModule, ConfirmationDialogComponent],
   providers: [MessageService],
   templateUrl: './signup.html',
   styleUrl: './signup.scss'
