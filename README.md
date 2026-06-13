@@ -67,9 +67,12 @@ Data flow follows a unidirectional path from the outside in, ensuring that busin
 
 ### Frontend
 *   **Core:** Angular (v22.x) with TypeScript
+*   **State Management:** **NgRx** (Store, Effects, Reducers, Selectors, Actions) for a highly predictable state architecture.
+*   **Asynchronous Flow (Reactive Streams):** **RxJS** (Observables, Pipeable Operators) for managing network operations and event streams.
 *   **UI & Components:** PrimeNG (high-quality pre-built UI components and modern themes), PrimeIcons
 *   **Styling:** Vanilla CSS/SCSS (straightforward, structured, utility-class-free custom styling)
 *   **Testing:** Vitest (v4.x) and JSDOM
+*   **Debugging:** Redux DevTools integration for real-time state tracking.
 
 ### Infrastructure & DevOps
 *   **Docker & Docker Compose:** Complete containerization of the application and the MySQL database.
@@ -145,6 +148,42 @@ docker compose up -d mysql
     npm start
     ```
 4.  Your frontend will automatically open at `http://localhost:4200`.
+
+---
+
+## 🧠 State Management & RxJS Architecture
+
+The Angular frontend is built using **NgRx** (Redux pattern) powered by **RxJS** streams, providing a unidirectional data flow and robust state tracking.
+
+```text
+[SignUpComponent (Form)] ──(Dispatches addAccount)──► [NgRx Store]
+                                                            │
+                                                     (Triggers Effect)
+                                                            │
+                                                            ▼
+[AccountListComponent] ◄──(Reactive signal updates)── [ComponentService]
+        │                                             (RxJS HTTP Request)
+(Dispatches deleteAccount)                                  │
+        │                                                   ▼
+        └────────────────────────────────────────────► (Node Backend)
+```
+
+### 1. Components & Single Source of Truth
+*   **`SignUpComponent`**: Dispatches `addAccount` actions. It listens to the store's `actionLoading` state to show loaders, and reacts to success actions (`addAccountSuccess`) to show toast notifications and clear inputs.
+*   **`AccountListComponent`**: Selects all registered accounts directly from the store state using high-performance **NgRx Selectors** with Angular's native **Signals** (`selectSignal`), making the UI re-render instantly when the state changes.
+
+### 2. State Machine Pipeline (RxJS & Effects)
+We decouple the component logic from HTTP calls by shifting network side-effects to **NgRx Effects**, utilizing RxJS pipeable operators:
+*   **`ofType`**: Filters action streams to respond only to specific commands.
+*   **`mergeMap`**: Coordinates async REST requests to the backend server.
+*   **`takeUntilDestroyed`**: Automatically unsubscribes from action pipelines on component teardown, preventing memory leaks.
+*   **`catchError` & `of`**: Intercepts server or network failures, dispatching error actions without breaking the stream.
+
+### 3. Redux DevTools Integration
+The store broadcasts state modifications to the **Redux DevTools** Chrome extension, enabling:
+*   Real-time inspection of state transitions.
+*   Action payload analysis.
+*   Time-travel debugging (stepping back and forth between states).
 
 ---
 

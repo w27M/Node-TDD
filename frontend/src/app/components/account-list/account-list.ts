@@ -1,12 +1,16 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal, DestroyRef } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { SignUpService, SignUpResponse } from '../../services/signup.service';
+import { SignUpResponse } from '../../services/component.service';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
-import { forkJoin } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { Actions, ofType } from '@ngrx/effects';
+import * as AccountsActions from '../../store/accounts.actions';
+import { selectAllAccounts, selectAccountsLoading, selectAccountsActionLoading } from '../../store/accounts.selectors';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-account-list',
@@ -17,72 +21,68 @@ import { forkJoin } from 'rxjs';
   styleUrl: './account-list.scss'
 })
 export class AccountListComponent implements OnInit {
-  private readonly signUpService = inject(SignUpService);
+  private readonly store = inject(Store);
+  private readonly actions$ = inject(Actions);
   private readonly messageService = inject(MessageService);
+  private readonly destroyRef = inject(DestroyRef);
 
-  protected accounts = signal<SignUpResponse[]>([]);
+  // States selected from NgRx Store
+  protected accounts = this.store.selectSignal(selectAllAccounts);
+  protected loading = this.store.selectSignal(selectAccountsLoading);
+  protected actionLoading = this.store.selectSignal(selectAccountsActionLoading);
+
+  // Local components selection state
   protected selectedAccounts = signal<SignUpResponse[]>([]);
-  protected loading = signal(true);
+
+  constructor() {
+    // Listen for delete success to show notification and update local selection
+    this.actions$.pipe(
+      ofType(AccountsActions.deleteAccountSuccess),
+      takeUntilDestroyed(this.destroyRef)
+    ).subscribe(({ id, name }) => {
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Record Removed',
+        detail: `The record with name "${name}" has been removed.`,
+        life: 4000
+      });
+
+      // Remove from selected list
+      this.selectedAccounts.update(selected => selected.filter(acc => acc.id.toString() !== id));
+    });
+
+    // Listen for errors
+    this.actions$.pipe(
+      ofType(AccountsActions.loadAccountsFailure, AccountsActions.deleteAccountFailure),
+      takeUntilDestroyed(this.destroyRef)
+    ).subscribe(({ error }) => {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'An error occurred while communicating with the server. Is it running?',
+        life: 4000
+      });
+      console.error('NgRx Account Error:', error);
+    });
+  }
 
   ngOnInit() {
     this.loadAccounts();
   }
 
   protected loadAccounts() {
-    this.loading.set(true);
-
-    this.signUpService.getAccounts().subscribe({
-      next: (data) => {
-        this.accounts.set(data);
-        this.loading.set(false);
-      },
-      error: (err) => {
-        this.loading.set(false);
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: 'Could not load the accounts list. Is the server running?',
-          life: 4000
-        });
-        console.error('Error loading accounts:', err);
-      }
-    });
+    this.store.dispatch(AccountsActions.loadAccounts());
   }
 
   protected deleteSelected() {
     const selected = this.selectedAccounts();
     if (selected.length === 0) return;
 
-    this.loading.set(true);
-
-    const deleteRequests = selected.map(account => 
-      this.signUpService.deleteAccount(account.id.toString())
-    );
-
-    forkJoin(deleteRequests).subscribe({
-      next: () => {
-        selected.forEach(account => {
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Record Removed',
-            detail: `The record with name "${account.name}" has been removed.`,
-            life: 4000
-          });
-        });
-
-        this.selectedAccounts.set([]);
-        this.loadAccounts();
-      },
-      error: (err) => {
-        this.loading.set(false);
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: 'Could not delete the selected account(s).',
-          life: 4000
-        });
-        console.error('Error deleting accounts:', err);
-      }
+    selected.forEach(account => {
+      this.store.dispatch(AccountsActions.deleteAccount({ 
+        id: account.id.toString(), 
+        name: account.name 
+      }));
     });
   }
 }
