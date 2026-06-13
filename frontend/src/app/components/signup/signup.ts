@@ -1,4 +1,4 @@
-import { Component, inject, signal, DestroyRef } from '@angular/core';
+import { Component, inject, signal, computed, DestroyRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { SignUpRequest } from '../../services/component.service';
@@ -29,6 +29,27 @@ export class SignUpComponent {
   protected email = signal('');
   protected password = signal('');
   protected passwordConfirmation = signal('');
+
+  // Form Validation & Modification States
+  protected isFormValid = computed(() => {
+    return this.name().trim() !== '' &&
+           this.email().trim() !== '' &&
+           this.password().trim() !== '' &&
+           this.passwordConfirmation().trim() !== '';
+  });
+
+  protected isFormDirty = computed(() => {
+    return this.name().trim() !== '' ||
+           this.email().trim() !== '' ||
+           this.password().trim() !== '' ||
+           this.passwordConfirmation().trim() !== '';
+  });
+
+  // Modal State
+  protected showDiscardDialog = signal(false);
+
+  // Deactivation promise resolver
+  private deactivationPromiseResolver?: (allow: boolean) => void;
 
   // Status/Feedback Fields from NgRx
   protected loading = this.store.selectSignal(selectAccountsActionLoading);
@@ -77,6 +98,33 @@ export class SignUpComponent {
       });
       console.error('Sign up error:', error);
     });
+  }
+
+  // Deactivation Guard Handler called by Angular router guard
+  public canDeactivate(): Promise<boolean> | boolean {
+    if (this.isFormDirty()) {
+      this.showDiscardDialog.set(true);
+      return new Promise<boolean>((resolve) => {
+        this.deactivationPromiseResolver = resolve;
+      });
+    }
+    return true;
+  }
+
+  protected onDeactivateBack() {
+    this.showDiscardDialog.set(false);
+    if (this.deactivationPromiseResolver) {
+      this.deactivationPromiseResolver(false);
+      this.deactivationPromiseResolver = undefined;
+    }
+  }
+
+  protected onDeactivateNext() {
+    this.showDiscardDialog.set(false);
+    if (this.deactivationPromiseResolver) {
+      this.deactivationPromiseResolver(true);
+      this.deactivationPromiseResolver = undefined;
+    }
   }
 
   protected onSubmit() {

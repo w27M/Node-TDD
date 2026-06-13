@@ -68,7 +68,7 @@
       </div>
 
       <div class="form-actions">
-        <button type="submit" [disabled]="loading()" class="btn-submit">
+        <button type="submit" [disabled]="loading() || !isFormValid()" class="btn-submit">
           @if (loading()) {
             <span class="spinner"></span> Loading...
           } @else {
@@ -82,3 +82,16 @@
     </form>
   </div>
 </div>
+
+@if (showDiscardDialog()) {
+  <div class="dialog-overlay">
+    <div class="dialog-box">
+      <h3>Confirmação</h3>
+      <p>Todas as informacoes serao perdidas, deseja continuar?</p>
+      <div class="dialog-actions">
+        <button type="button" (click)="onDeactivateBack()" class="btn-dialog-back">back</button>
+        <button type="button" (click)="onDeactivateNext()" class="btn-dialog-next">next</button>
+      </div>
+    </div>
+  </div>
+}
