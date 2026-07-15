@@ -3,7 +3,7 @@ module.exports = {
     collectCoverageFrom: ['<rootDir>/src/**/*.ts'],
     coverageDirectory: 'coverage',
     testEnvironment: 'node',
-    preset: '@shelf/jest-mongodb',
+    // preset: '@shelf/jest-mongodb',
     testMatch: ['**/*.spec.ts', '**/*.test.ts'],
     testPathIgnorePatterns: ['/node_modules/', '/dist/'],
     coveragePathIgnorePatterns: [

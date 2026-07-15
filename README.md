@@ -80,6 +80,33 @@ Data flow follows a unidirectional path from the outside in, ensuring that busin
 
 ---
 
+## 🔌 Database Feature Toggle
+
+The backend implements a highly decoupled database abstraction layer powered by a **Feature Toggle**. This allows you to switch between **MongoDB** and **MySQL** seamlessly without changing any application code.
+
+### How it Works
+The active database is controlled by the `FEATURE_TOGGLE_DB` environment variable (configured in `env.ts`):
+* `FEATURE_TOGGLE_DB=mongodb` (Default): Connects to MongoDB and injects `AccountMongoRepository` and `LogMongoRepository`.
+* `FEATURE_TOGGLE_DB=mysql`: Connects to MySQL and injects `AccountMySQLRepository` and `LogMySQLRepository`.
+
+Thanks to **Clean Architecture** and SOLID principles:
+- The controllers (`ListAccountsController`, `DeleteAccountController`, `SignUpController`) are completely decoupled and rely only on generic repository protocols.
+- The appropriate repository is resolved dynamically at the Composition Root (Factories in `src/main/factories/`), reading the environment variable.
+
+### Changing the Active Database
+* **To run with MongoDB (Default):**
+  Ensure you have MongoDB running locally on port `27017` (or start the docker container) and run:
+  ```bash
+  npm run dev
+  ```
+* **To run with MySQL:**
+  Make sure your MySQL database is active (for example, by running the Docker MySQL container in the background with `docker compose up -d mysql`), then run:
+  ```bash
+  FEATURE_TOGGLE_DB=mysql MYSQL_PORT=3307 MYSQL_PASSWORD=password MYSQL_DATABASE=clean_node_api npm run dev
+  ```
+
+---
+
 ## 🚀 Installation & Running
 
 ### Prerequisites
@@ -91,7 +118,7 @@ Make sure you have the following installed:
 
 ### Method 1: Full Execution with Docker Compose (Recommended)
 
-This method sets up both the Node application and the MySQL database in an isolated and automated way, running the `init.sql` script on the first launch.
+This method sets up the Node application, **MySQL 8.0**, and **MongoDB** databases in isolated containers. By default, the application is configured to run with **MongoDB**, but you can easily toggle this in `docker-compose.yml` under the `FEATURE_TOGGLE_DB` variable.
 
 1.  Open your terminal in the root directory:
     ```bash
@@ -102,9 +129,10 @@ This method sets up both the Node application and the MySQL database in an isola
     docker compose up --build
     ```
 3.  Docker will:
-    *   Download and start MySQL 8.0 on local port **3307**.
-    *   Run the `init.sql` script to create the `accounts` and `errors` tables.
-    *   Build and launch the Node.js API on port **5050**.
+    *   Download and start **MySQL 8.0** on local port **3307**.
+    *   Download and start **MongoDB 7.0** on local port **27018** (avoiding any conflicts if you already have MongoDB running locally on port 27017).
+    *   Run the `init.sql` script to create the MySQL database and tables on first launch.
+    *   Build and launch the Node.js API on port **5050** default-connected to the MongoDB service.
 4.  To stop the containers and free up memory on your Mac:
     ```bash
     docker compose down
@@ -189,13 +217,17 @@ The store broadcasts state modifications to the **Redux DevTools** Chrome extens
 
 ## 🧪 Running Tests
 
-Code quality is enforced through a strict test suite following TDD.
+Code quality is enforced through a strict test suite following TDD. The database integration and routing tests automatically adapt to the database selected by the `FEATURE_TOGGLE_DB` variable.
 
 ### Backend Tests (Jest)
 Run these commands in the root directory:
-*   **Run all tests:**
+*   **Run all tests (MongoDB - Default):**
     ```bash
     npm test
+    ```
+*   **Run all tests (MySQL):**
+    ```bash
+    FEATURE_TOGGLE_DB=mysql npm test
     ```
 *   **Unit Tests (Watch Mode):**
     ```bash

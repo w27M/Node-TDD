@@ -1,64 +1,62 @@
-/*
 import {MongoHelper} from "../../../../infra/db/mongodb/helpers/mongo-helper";
 import {Collection} from "mongodb";
 import {LogMongoRepository} from "../../../../infra/db/mongodb/log-repository/logMongoRepository";
 import {LogErrorRepository} from "../../../../data/protocols/log-error-repository";
-
-const makeSut = (): LogErrorRepository => {
-    return new LogMongoRepository();
-}
-
-describe('Log Mongo Repository', () => {
-    let errorCollection: Collection;
-
-    beforeAll(async () => {
-        await MongoHelper.connect('mongodb://localhost:27017/clean-node-api-test');
-    });
-
-    afterAll(async () => {
-        await MongoHelper.disconnect();
-    });
-
-    beforeEach(async () => {
-        errorCollection = await MongoHelper.getCollection('errors');
-        await errorCollection.deleteMany({});
-    });
-
-    it('should create a error log on success', async () => {
-        const sut = makeSut();
-        await sut.logError('any_error');
-        const count = await errorCollection.countDocuments();
-        expect(count).toBe(1);
-    });
-});
-*/
-
 import {MySQLHelper} from "../../../../infra/db/mysql/helpers/mysql-helper";
 import {LogMySQLRepository} from "../../../../infra/db/mysql/log-repository/log-repository";
-import {LogErrorRepository} from "../../../../data/protocols/log-error-repository";
 import env from "../../../../../env";
 
-const makeSut = (): LogErrorRepository => {
-    return new LogMySQLRepository();
+if (env.featureToggleDb === 'mongodb') {
+    const makeSut = (): LogErrorRepository => {
+        return new LogMongoRepository();
+    }
+
+    describe('Log Mongo Repository', () => {
+        let errorCollection: Collection;
+
+        beforeAll(async () => {
+            await MongoHelper.connect(env.mongoUrl);
+        });
+
+        afterAll(async () => {
+            await MongoHelper.disconnect();
+        });
+
+        beforeEach(async () => {
+            errorCollection = await MongoHelper.getCollection('errors');
+            await errorCollection.deleteMany({});
+        });
+
+        it('should create a error log on success', async () => {
+            const sut = makeSut();
+            await sut.logError('any_error');
+            const count = await errorCollection.countDocuments();
+            expect(count).toBe(1);
+        });
+    });
+} else {
+    const makeSut = (): LogErrorRepository => {
+        return new LogMySQLRepository();
+    }
+
+    describe('Log MySQL Repository', () => {
+        beforeAll(async () => {
+            await MySQLHelper.connect(env.mysqlConfig);
+        });
+
+        afterAll(async () => {
+            await MySQLHelper.disconnect();
+        });
+
+        beforeEach(async () => {
+            await MySQLHelper.execute("DELETE FROM errors");
+        });
+
+        it('should create a error log on success', async () => {
+            const sut = makeSut();
+            await sut.logError('any_error');
+            const result = await MySQLHelper.execute("SELECT count(*) as count FROM errors");
+            expect(result[0].count).toBe(1);
+        });
+    });
 }
-
-describe('Log MySQL Repository', () => {
-    beforeAll(async () => {
-        await MySQLHelper.connect(env.mysqlConfig);
-    });
-
-    afterAll(async () => {
-        await MySQLHelper.disconnect();
-    });
-
-    beforeEach(async () => {
-        await MySQLHelper.execute("DELETE FROM errors");
-    });
-
-    it('should create a error log on success', async () => {
-        const sut = makeSut();
-        await sut.logError('any_error');
-        const result = await MySQLHelper.execute("SELECT count(*) as count FROM errors");
-        expect(result[0].count).toBe(1);
-    });
-});

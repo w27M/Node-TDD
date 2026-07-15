@@ -1,9 +1,9 @@
 import { Controller, HttpResponse, HttpRequest } from "../../protocols"
 import { ok, serverError } from "../../helpers/http-helper"
-import { AccountMySQLRepository } from "../../../infra/db/mysql/account-repository/accounts"
+import { LoadAllAccountsRepository } from "../../../data/protocols/load-all-accounts-repository"
 
 export class ListAccountsController implements Controller {
-  constructor(private readonly accountRepository: AccountMySQLRepository) {}
+  constructor(private readonly accountRepository: LoadAllAccountsRepository) {}
 
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     try {

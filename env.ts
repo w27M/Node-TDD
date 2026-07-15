@@ -8,4 +8,5 @@ export default {
         database: process.env.MYSQL_DATABASE || 'accounts'
     },
     port: process.env.PORT || 5050,
+    featureToggleDb: process.env.FEATURE_TOGGLE_DB || 'mongodb'
 }

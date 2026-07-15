@@ -1,9 +1,9 @@
 import { Controller, HttpResponse, HttpRequest } from "../../protocols"
 import { ok, serverError, badRequest } from "../../helpers/http-helper"
-import { AccountMySQLRepository } from "../../../infra/db/mysql/account-repository/accounts"
+import { DeleteAccountRepository } from "../../../data/protocols/delete-account-repository"
 
 export class DeleteAccountController implements Controller {
-  constructor(private readonly accountRepository: AccountMySQLRepository) {}
+  constructor(private readonly accountRepository: DeleteAccountRepository) {}
 
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
