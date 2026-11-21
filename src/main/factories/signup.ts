@@ -9,6 +9,7 @@ import {LogControllerDecorator} from "../decorators/log";
 import {LogMySQLRepository} from "../../infra/db/mysql/log-repository/log-repository";
 import {LogMongoRepository} from "../../infra/db/mongodb/log-repository/logMongoRepository";
 import env from "../../../env";
+import {makeSignUpValidation} from "./signup-validation";
 
 export const makeSignUpController = (): Controller  => {
     const salt = 12;
@@ -18,7 +19,7 @@ export const makeSignUpController = (): Controller  => {
         ? new AccountMongoRepository()
         : new AccountMySQLRepository();
     const dbAddAccount = new DbAddAccount(bcryptAdapter, accountRepository);
-    const signUpController = new SignUpController(emailValidator, dbAddAccount);
+    const signUpController = new SignUpController(emailValidator, dbAddAccount, makeSignUpValidation());
     const logRepository = env.featureToggleDb === 'mongodb'
         ? new LogMongoRepository()
         : new LogMySQLRepository();
